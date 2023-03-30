@@ -56,12 +56,18 @@ local plugins = {
 
     {
         "nvim-treesitter/nvim-treesitter",
+        dependencies = {
+            'windwp/nvim-ts-autotag' -- todo doesn't work
+        },
+        opts = overrides.treesitter,
+        lazy = false,
     },
 
     {
         "nvim-tree/nvim-tree.lua",
         opts = overrides.nvimtree,
     },
+
     -- Install a plugin
     {
         "chikko80/error-lens.nvim",
