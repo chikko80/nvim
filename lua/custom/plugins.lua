@@ -37,19 +37,17 @@ local plugins = {
     "nvim-tree/nvim-tree.lua",
     opts = overrides.nvimtree,
   },
-
   -- Install a plugin
   {
     "chikko80/error-lens.nvim",
-
-    "nvim-tree/nvim-web-devicons",
-    config = function()
-      require("nvim-web-devicons").setup {}
-    end,
+    lazy = false,
   },
+
   {
     "kenn7/vim-arsync",
+    lazy = false,
   },
+
   {
     "rmagatti/auto-session",
     opts = {
@@ -61,45 +59,45 @@ local plugins = {
   },
 
   {
-
     "tpope/vim-repeat",
+    lazy = false,
   },
-  {
 
+  {
     "tpope/vim-surround",
+    lazy = false,
   },
-  {
 
+  {
     "RRethy/vim-illuminate",
+    lazy = false,
   },
-  {
 
+  {
     "Djancyp/better-comments.nvim",
+    lazy = false,
   },
 
   {
-
     "ggandor/leap.nvim",
+    lazy = false,
   },
 
   {
-
     "kdheepak/lazygit.nvim",
-        lazy = false
+    lazy = false,
   },
 
   {
-
     "mbbill/undotree",
+    lazy = false,
   },
-  {
 
-    "rcarriga/nvim-notify",
-  },
   {
-
     "wakatime/vim-wakatime",
+    lazy = false,
   },
+
   -- To make a plugin not be loaded
   -- {
   --   "NvChad/nvim-colorizer.lua",

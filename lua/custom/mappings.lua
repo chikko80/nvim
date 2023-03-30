@@ -13,7 +13,6 @@ M.general = {
     ["<CHAR-0x37>c"] = { '"+y', "", opts = { remap = true } },
     ["<CHAR-0x37>v"] = { '"+p', "", opts = { remap = true } },
     ["<leader>P"] = { '"+p', "", { remap = true } },
-    ["<CHAR-0x37>/"] = { "gcc", "", opts = { remap = true } },
     ["ZA"] = { ":wqa<CR>", "", opts = {} },
     ["<C-h>"] = { "<C-w>h", "", opts = {} },
     ["<C-j>"] = { "<C-w>j", "", opts = {} },
@@ -30,7 +29,6 @@ M.general = {
   i = {
     ["<C-CR>"] = { "<C-o>A;<CR>", "", {} },
     ["<CHAR-0x37>v"] = { '<Esc>"+pA', "", { remap = true } },
-    ["<CHAR-0x37>/"] = { "<Esc>gcc", "", { remap = true } },
   },
 
   v = {
@@ -51,13 +49,49 @@ M.general = {
 M.telescope = {
   plugin = true,
     n = {
-        ["<leader>fs"] = { "<cmd> Telescope live_grep <CR>", "live grep" },
+        ["s"] = { "<cmd> Telescope live_grep <CR>", "Fuzzy infile" },
         ["<leader>ff"] = { "<cmd> Telescope git_files <CR>", "git files" },
         ["<leader>fa"] = { "<cmd> Telescope find_files <CR>", "find files " },
         ["<leader>fA"] = { "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "find all" },
         ["<leader>u"] = { "<cmd> Telescope buffers <CR>", "find buffers" },
     }
 }
+
+M.nvimtree = {
+  plugin = true,
+
+  n = {
+    -- toggle
+    ["<leader>e"] = { "<cmd> NvimTreeToggle <CR>", "NvimTreeToggle" },
+
+    -- -- focus
+    -- ["<leader>e"] = { "<cmd> NvimTreeFocus <CR>", "focus nvimtree" },
+  },
+}
+
+
+M.comment = {
+  plugin = true,
+
+  -- toggle comment in both modes
+  n = {
+    ["<CHAR-0x37>/"] = {
+      function()
+        require("Comment.api").toggle.linewise.current()
+      end,
+      "toggle comment",
+    },
+  },
+
+  v = {
+    ["<CHAR-0x37>/"] = {
+      "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
+      "toggle comment",
+    },
+  },
+}
+
+
 
 M.misc = {
     n = {
@@ -66,10 +100,6 @@ M.misc = {
 }
 
 
-
-print "get loaded"
-
--- more keybinds!
 
 return M
 
