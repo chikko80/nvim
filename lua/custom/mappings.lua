@@ -46,6 +46,8 @@ M.general = {
     -- change word under cursor
     ["<leader>s"] = { [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "Replace global", opts = {} },
 
+
+
     -- change word under cursor - useless
     -- ["<leader>x"] = { "<cmd>!chmod +x %<CR>", "", opts = { silent = true } },
   },
@@ -59,12 +61,12 @@ M.general = {
     ["<CHAR-0x37>c"] = { '"+y', "", { remap = true } },
     ["<leader>y"] = { '"+y', "", { remap = true } },
     ["<leader>P"] = { '"+p', "Paste from clipboard", { remap = true } },
-    ["<leader>np"] = { '"_dP', "Paste no copy", {} },
     ["<CHAR-0x37>v"] = { '"+p', "", opts = { remap = true } },
 
     -- move lines
     ["J"] = { ":m '>+1<CR>gv=gv", "Move Line Up", {} },
     ["K"] = { ":m '<-2<CR>gv=gv", "Move Line Down", {} },
+    -- ["p"] = { '"_dP', "Paste no copy", {} },
   },
 
   x = {
@@ -135,6 +137,9 @@ M.misc = {
   n = {
     ["<leader>U"] = { "<cmd>UndotreeToggle<CR>", "UndotreeToggle" },
 
+    ["<leader>w"] = { "<cmd>:wa<CR>", "Save All Buffers" },
+    ["<leader>nu"] = { "<cmd>NvChadUpdate<CR>", "Update" },
+
     ["<leader>g"] = { "<cmd>LazyGit<CR>", "LazyGit" },
     ["<leader>bd"] = { "<CMD>bd<CR>", "Close active buffer" },
     ["<leader>bc"] = { "<C-w>o", "Close other buffers" },
@@ -158,9 +163,15 @@ M.misc = {
     ["<leader>ca"] = { "<cmd>Lspsaga code_action<CR>", "Code Action", {} },
     ["K"] = { "<cmd>Lspsaga hover_doc<CR>", "Hover Doc", {} },
     ["<leader>co"] = { "<cmd>Lspsaga outline<CR>", "Code Outline", {} },
+
+    ["<leader>tt"] = {
+      function()
+                -- use this for tests
+      end,
+      "testfunction",
+    },
   },
 }
-
 
 return M
 

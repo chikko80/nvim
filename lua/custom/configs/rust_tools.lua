@@ -1,10 +1,9 @@
-local lsp_setup = require "custom.configs.setup"
-
 require("rust-tools").setup {
   server = {
-    on_attach = function(client, _)
-      print "Attaching Rust Tools"
-      lsp_setup.setup_on_attach(client)
+    on_attach = function(_, _)
+      -- print "Attaching Rust Tools"
+      -- lsp_setup.setup_on_attach(client)
+        --  TODO keymaps
     end,
     settings = {
       -- to enable rust-analyzer settings visit:

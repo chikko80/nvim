@@ -70,22 +70,6 @@ M.treesitter = {
   },
 }
 
-M.mason = {
-  ensure_installed = {
-    -- mandatory
-    "rust-analyzer",
-
-    -- lua stuff
-    "lua-language-server",
-    "stylua",
-
-    -- web dev stuff
-    "css-lsp",
-    "html-lsp",
-    "typescript-language-server",
-  },
-}
-
 -- git support in nvimtree
 M.nvimtree = {
   actions = {
@@ -108,6 +92,7 @@ M.nvimtree = {
     },
   },
 }
+
 
 
 return M

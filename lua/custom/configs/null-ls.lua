@@ -7,8 +7,8 @@ end
 local b = null_ls.builtins
 
 local sources = {
-    -- webdev stuff
-    b.formatting.prettier,
+    -- json 
+    b.formatting.prettierd,
     -- Lua
     b.formatting.stylua,
 }

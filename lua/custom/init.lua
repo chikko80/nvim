@@ -4,9 +4,9 @@ vim.opt.nu = true
 
 vim.opt.relativenumber = true
 
-vim.opt.clipboard=""
+vim.opt.clipboard = ""
 
-vim.opt.timeoutlen = 100
+vim.opt.timeoutlen = 200
 
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
@@ -18,17 +18,17 @@ vim.opt.wrap = false
 
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undodir = os.getenv "HOME" .. "/.vim/undodir"
 vim.opt.undofile = true
 
-vim.opt.hlsearch = true
-vim.opt.incsearch = true
+vim.opt.hlsearch = false
+vim.opt.incsearch = false
 
 vim.opt.termguicolors = true
 
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
-vim.opt.isfname:append("@-@")
+vim.opt.isfname:append "@-@"
 
 vim.opt.updatetime = 50
 
@@ -40,15 +40,13 @@ vim.opt.termguicolors = true
 
 vim.o.switchbuf = vim.o.switchbuf .. ",uselast"
 
-
 -- save file on buf change or leave
-vim.cmd([[
-  augroup AutoSaveBuffer
-    autocmd!
-    autocmd BufLeave * if &modified | silent! write | endif
-    autocmd VimLeave * if &modified | silent! write | endif
-  augroup END
-]])
+vim.cmd [[
+    augroup AutoSaveBuffers
+      autocmd!
+      autocmd WinLeave,BufLeave * if &modified | silent! write | silent! doautocmd BufWrite | endif
+    augroup END
+]]
 
 -- highlight yanked text for 200ms using the "Visual" highlight group
 vim.cmd [[
@@ -59,9 +57,11 @@ vim.cmd [[
 ]]
 
 -- save file on buf change or leave
-autocmd("BufEnter",
-{ callback = function() vim.opt.formatoptions = vim.opt.formatoptions - { "c", "r", "o" } end, })
-
+autocmd("BufEnter", {
+  callback = function()
+    vim.opt.formatoptions = vim.opt.formatoptions - { "c", "r", "o" }
+  end,
+})
 
 -- Auto resize panes when resizing nvim window
 autocmd("VimResized", {
@@ -69,16 +69,15 @@ autocmd("VimResized", {
   command = "tabdo wincmd =",
 })
 
-
 -- Close NvimTree when leaving nvim, otherwise autosesion bugs
-vim.api.nvim_create_autocmd({ 'VimLeave' }, {
-  pattern = 'NvimTree*',
+vim.api.nvim_create_autocmd({ "VimLeave" }, {
+  pattern = "NvimTree*",
   callback = function()
-  local view = require('nvim-tree.view')
-  local is_visible = view.is_visible()
-  local api = require('nvim-tree.api')
-  if is_visible then
-    api.tree.close()
-  end
+    local view = require "nvim-tree.view"
+    local is_visible = view.is_visible()
+    local api = require "nvim-tree.api"
+    if is_visible then
+      api.tree.close()
+    end
   end,
 })

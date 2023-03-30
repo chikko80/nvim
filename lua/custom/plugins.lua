@@ -1,4 +1,5 @@
 local overrides = require "custom.configs.overrides"
+local options = require "custom.configs.plugin_options"
 
 ---@type NvPluginSpec[]
 local plugins = {
@@ -9,21 +10,22 @@ local plugins = {
     dependencies = {
       -- format & linting
       {
+        "williamboman/mason.nvim",
+      },
+      {
+        "williamboman/mason-lspconfig.nvim",
+        opts = options.mason_lspconfig,
+      },
+      {
+        "jay-babu/mason-null-ls.nvim",
+        opts = options.mason_nullls,
+      },
+      {
         "jose-elias-alvarez/null-ls.nvim",
         config = function()
           require "custom.configs.null-ls"
         end,
       },
-      {
-        "simrat39/rust-tools.nvim",
-        event = "LspAttach",
-        ft = "rs",
-        config = function()
-          require "custom.configs.rust_tools"
-        end,
-        lazy = false,
-      },
-
       {
         "glepnir/lspsaga.nvim",
         event = "LspAttach",
@@ -36,13 +38,21 @@ local plugins = {
           { "nvim-treesitter/nvim-treesitter" },
         },
       },
+      {
+        "simrat39/rust-tools.nvim",
+        event = "LspAttach",
+        ft = "rs",
+        config = function()
+          require "custom.configs.rust_tools"
+        end,
+        lazy = false,
+      },
     },
     config = function()
       require "plugins.configs.lspconfig"
       require "custom.configs.lspconfig"
     end, -- Override to setup mason-lspconfig
   },
-
   -- override plugin configs
   {
     "nvim-treesitter/nvim-treesitter",
@@ -52,26 +62,17 @@ local plugins = {
     opts = overrides.treesitter,
     lazy = false,
   },
-
   {
     "nvim-tree/nvim-tree.lua",
     opts = overrides.nvimtree,
   },
 
-  {
-    "williamboman/mason.nvim",
-    opts = overrides.mason,
-  },
-
   -- Install a plugin
+
   {
     "chikko80/error-lens.nvim",
-    lazy = false,
-  },
-
-  {
-    "kenn7/vim-arsync",
-    lazy = false,
+    event = "LspAttach",
+    opts = options.error_lens,
   },
 
   {
@@ -94,15 +95,22 @@ local plugins = {
     lazy = false,
   },
 
-  -- doesn't work
-  -- {
-  --   "RRethy/vim-illuminate",
-  --   lazy = false,
-  --       config = function (_, opts)
-  --
-  --   require('illuminate').configure({})
-  --       end
-  -- },
+  {
+    "kenn7/vim-arsync",
+    lazy = false,
+  },
+
+  -- -- doesn't work
+  {
+    "RRethy/vim-illuminate",
+    lazy = false,
+    config = function()
+      require("illuminate").configure()
+      vim.cmd("highlight IlluminatedWordText guibg=#3b3f45 ")
+      vim.cmd("highlight IlluminatedWordRead guibg=#3b3f45 ")
+      vim.cmd("highlight IlluminatedWordWrite guibg=#3b3f45 ")
+    end,
+  },
 
   {
     -- TODO event on save
@@ -206,6 +214,7 @@ local plugins = {
 
   {
     "nvim-telescope/telescope.nvim",
+    dependencies = { "nvim-telescope/telescope-fzy-native.nvim" },
     opts = {
       pickers = {
         buffers = {
