@@ -14,9 +14,6 @@ lsp.ensure_installed {
 }
 
 
--- (Optional) Configure lua language server for neovim
-lsp.nvim_workspace()
-
 lsp.on_attach(function(client, bufnr)
     print "Caling attach in lsp zero"
     lsp_setup.setup_on_attach(client, bufnr)

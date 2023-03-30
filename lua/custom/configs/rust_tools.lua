@@ -1,7 +1,6 @@
 local lsp_setup = require("custom.configs.setup")
 
-local rt = require("rust-tools")
-rt.setup(
+require("rust-tools").setup(
     {
         server = {
             on_attach = function(client, bufnr)

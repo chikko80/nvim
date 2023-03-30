@@ -41,12 +41,28 @@ local plugins = {
 
     {
         'simrat39/rust-tools.nvim',
+        event = "LspAttach",
         config = function()
             print("Calling config for rust-tools.nvim")
             require "custom.configs.rust_tools"
         end,
         lazy = false,
     },
+
+    {
+        "glepnir/lspsaga.nvim",
+        event = "LspAttach",
+        config = function()
+            print("Attaching LSP Saga")
+            require("lspsaga").setup({})
+        end,
+        dependencies = {
+            { "nvim-tree/nvim-web-devicons" },
+            --Please make sure you install markdown and markdown_inline parser
+            { "nvim-treesitter/nvim-treesitter" }
+        }
+    },
+
     --
     -- -- override plugin configs
     -- {
