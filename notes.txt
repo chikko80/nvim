@@ -1,0 +1,70 @@
+TODO:
+    - move split a single window
+    - minimap 
+
+    - txt file coloring
+    - remote dev
+
+    - nvim tree 
+        - navigation hjkl
+        - colors like vscode
+
+    - see the top header of the function while scrolling
+
+    - telescope search vim disable (double esc)
+
+
+    - file name refactoring
+        - [https://www.reddit.com/r/neovim/comments/psx9rc/how_to_make_vim_smart_like_jetbrains_ide/](https://www.reddit.com/r/neovim/comments/psx9rc/how_to_make_vim_smart_like_jetbrains_ide/)
+    - trouble vim
+    - lsp-status.nvim - lsp in status bar / fidget - (better lsp status line)
+
+    - coq nvim
+    - diagnostics
+    - debugging
+        - [https://rsdlt.github.io/posts/rust-nvim-ide-guide-walkthrough-development-debug/](https://rsdlt.github.io/posts/rust-nvim-ide-guide-walkthrough-development-debug/)
+        - DAP
+        - https://github.com/mfussenegger/nvim-dap
+        - https://github.com/rcarriga/nvim-dap-ui
+
+
+    - Lazy Loading
+
+
+    - vim navigator plugin
+    - tmux auto start
+    - whichkey setup
+
+    - better error lens
+        https://github.com/Civitasv/runvim/blob/master/lua/plugins/lsp/handlers.lua
+        - trouble? 
+    - copilot
+    - copilot-cmp
+    
+    - cmp sorting
+
+    - horizontal split delimiter
+    - remote dev doesn't work
+
+FIXED
+    - stop auto comment on new line
+    - theme colors like vscode
+    - search illumination
+    - nvim tree 
+        - no cursor in tree (related to theme)
+        - color of modules
+        - yy p doesn't create duplicate
+
+    - Lsp format / autoformatter / null ls
+    - Comment.nvim
+    - Rust tools
+
+    - [https://sharksforarms.dev/posts/neovim-rust/](https://sharksforarms.dev/posts/neovim-rust/)
+
+    - zoom in, zoom out
+    - pick window
+
+    - tmux sessionizer
+    - general tmux setup
+    - https://github.com/27medkamal/tmux-session-wizard
+    - https://github.com/caarlos0/dotfiles.fish/blob/main/bin/tmux-sessionizer

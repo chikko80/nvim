@@ -8,15 +8,15 @@ local lspconfig = require "lspconfig"
 local servers = { "html", "cssls", "tsserver", "clangd" }
 
 for bufnr, lsp in ipairs(servers) do
-print("Attaching")
-  lspconfig[lsp].setup {
-    on_attach = function(client)
-        print("Call")
-      on_attach(client, bufnr)
-      setup_on_attach(client, bufnr)
-    end,
-    capabilities = capabilities,
-  }
+    -- print("Attaching")
+    lspconfig[lsp].setup {
+        on_attach = function(client)
+            print "Call"
+            on_attach(client, bufnr)
+            setup_on_attach(client, bufnr)
+        end,
+        capabilities = capabilities,
+    }
 end
 
 --

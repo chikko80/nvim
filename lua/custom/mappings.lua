@@ -3,46 +3,73 @@ local M = {}
 
 M.general = {
   n = {
+    -- do nothing
     ["<CHAR-0x37>p"] = { "", "", opts = { remap = true } },
     ["<CHAR-0x37>o"] = { "", "", opts = { remap = true } },
-    ["<CR>"] = { "o<Esc>", "", opts = {} },
-    ["<CHAR-0x37>r"] = { ":luafile ~/.config/nvim/init.lua<CR>", "", opts = {} },
     ["<CHAR-0x37>s"] = { "", "", opts = { remap = true } },
-    ["<CHAR-0x36>s"] = { ":wa <CR>", opts = { remap = true } },
+
+    -- newline on enter
+    ["<CR>"] = { "o<Esc>", "", opts = {} },
+
+    -- ["<CHAR-0x37>r"] = { ":luafile ~/.config/nvim/init.lua<CR>", "", opts = {} }, not need in NVChad
+    -- ["<CHAR-0x36>s"] = { ":wa <CR>", opts = { remap = true } },
+
+    -- system copy, paste, mark
     ["<CHAR-0x37>a"] = { "ggVG", "", opts = { remap = true } },
     ["<CHAR-0x37>c"] = { '"+y', "", opts = { remap = true } },
     ["<CHAR-0x37>v"] = { '"+p', "", opts = { remap = true } },
-    ["<leader>P"] = { '"+p', "", { remap = true } },
-    ["ZA"] = { ":wqa<CR>", "", opts = {} },
+
+    -- yank from clipboard
+    ["<leader>P"] = { '"+p', "Paste from clipboard", { remap = true } },
+
+    -- save leave with ZA
+    ["ZA"] = { ":wqa<CR>", "Save leave", opts = {} },
+
+    -- (in NVChad core)
     ["<C-h>"] = { "<C-w>h", "", opts = {} },
     ["<C-j>"] = { "<C-w>j", "", opts = {} },
     ["<C-k>"] = { "<C-w>k", "", opts = {} },
     ["<C-l>"] = { "<C-w>l", "", opts = {} },
-    ["<C-\\>"] = { "<C-w>v", "", opts = {} },
-    ["<C-CR>"] = { "<C-w>s", "", opts = {} },
+
+    -- split panes
+    ["<C-\\>"] = { "<C-w>v", "Split horizontal", opts = {} },
+    ["<C-CR>"] = { "<C-w>s", "Split vertical", opts = {} },
+
+    -- stay in line while J
     ["J"] = { "mzJ`z", "", opts = {} },
-    ["n"] = { "nzzzv", "", opts = {} },
+    ["K"] = { "mzK`z", "", opts = {} },
+
+    -- stick mid while n
     ["N"] = { "Nzzzv", "", opts = {} },
-    ["<leader>s"] = { [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "", opts = {} },
-    ["<leader>x"] = { "<cmd>!chmod +x %<CR>", "", opts = { silent = true } },
+    ["n"] = { "nzzzv", "", opts = {} },
+
+    -- change word under cursor
+    ["<leader>s"] = { [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "Replace global", opts = {} },
+
+    -- change word under cursor - useless
+    -- ["<leader>x"] = { "<cmd>!chmod +x %<CR>", "", opts = { silent = true } },
   },
   i = {
-    ["<C-CR>"] = { "<C-o>A;<CR>", "", {} },
+    -- pase from clipboard while in insert mode
     ["<CHAR-0x37>v"] = { '<Esc>"+pA', "", { remap = true } },
   },
 
   v = {
+    -- copy paste clipboard
     ["<CHAR-0x37>c"] = { '"+y', "", { remap = true } },
     ["<leader>y"] = { '"+y', "", { remap = true } },
-    ["<leader>P"] = { '"+p', "", { remap = true } },
-    ["<leader>np"] = { '"_dP', "", {} },
-    ["J"] = { ":m '>+1<CR>gv=gv", "", {} },
-    ["K"] = { ":m '<-2<CR>gv=gv", "", {} },
+    ["<leader>P"] = { '"+p', "Paste from clipboard", { remap = true } },
+    ["<leader>np"] = { '"_dP', "Paste no copy", {} },
+    ["<CHAR-0x37>v"] = { '"+p', "", opts = { remap = true } },
+
+    -- move lines
+    ["J"] = { ":m '>+1<CR>gv=gv", "Move Line Up", {} },
+    ["K"] = { ":m '<-2<CR>gv=gv", "Move Line Down", {} },
   },
 
   x = {
-    ["<leader>np"] = { '"_dP', "", {} },
-    ["<CHAR-0x37>/"] = { "gc", "", { remap = true } },
+    ["<leader>np"] = { '"_dP', "Paste no copy", {} },
+    ["<CHAR-0x37>v"] = { '"+p', "", opts = { remap = true } },
   },
 }
 
@@ -50,9 +77,9 @@ M.telescope = {
   plugin = true,
     n = {
         ["s"] = { "<cmd> Telescope live_grep <CR>", "Fuzzy infile" },
-        ["<leader>ff"] = { "<cmd> Telescope git_files <CR>", "git files" },
-        ["<leader>fa"] = { "<cmd> Telescope find_files <CR>", "find files " },
-        ["<leader>fA"] = { "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "find all" },
+        ["<leader>p"] = { "<cmd> Telescope git_files <CR>", "git files" },
+        -- ["<leader>o"] = { "<cmd> Telescope find_files <CR>", "find files " },
+        ["<leader>o"] = { "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "find all" },
         ["<leader>u"] = { "<cmd> Telescope buffers <CR>", "find buffers" },
     }
 }
@@ -64,7 +91,7 @@ M.nvimtree = {
     -- toggle
     ["<leader>e"] = { "<cmd> NvimTreeToggle <CR>", "NvimTreeToggle" },
 
-    -- -- focus
+    -- focus
     -- ["<leader>e"] = { "<cmd> NvimTreeFocus <CR>", "focus nvimtree" },
   },
 }
@@ -89,17 +116,47 @@ M.comment = {
       "toggle comment",
     },
   },
+
+  x = {
+    ["<CHAR-0x37>/"] = {
+      "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
+      "toggle comment",
+    },
+  },
+
+  i = {
+    ["<CHAR-0x37>/"] = {
+      "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
+      "toggle comment",
+    },
+  },
+
 }
 
 
 
 M.misc = {
     n = {
+        ["<leader>U"] = { "<cmd>UndotreeToggle<CR>", "UndotreeToggle" },
         ["<leader>g"] = { "<cmd>LazyGit<CR>", "LazyGit" },
+
+        ["<leader>bd"]  = { "<CMD>bd<CR>", "Close active buffer" },
+        ["<leader>bc"]  = { "<C-w>o", "Close other buffers" },
+        ["<leader>bh"] = { "<C-w>H", "Move buffer left" },
+        ["<leader>bl"] = { "<C-w>L", "Move buffer right" },
+        ["<leader>bj"] = { "<C-w>J", "Move buffer down" },
+        ["<leader>bk"] = { "<C-w>K", "Move buffer up" },
     }
 }
 
 
+vim.keymap.set({ 'n', 'x', 'v' }, ';', function()
+    local focusable_windows_on_tabpage = vim.tbl_filter(
+        function(win) return vim.api.nvim_win_get_config(win).focusable end,
+        vim.api.nvim_tabpage_list_wins(0)
+    )
+    require('leap').leap { target_windows = focusable_windows_on_tabpage }
+end)
 
 return M
 
@@ -117,7 +174,7 @@ return M
 
 -- -- Full quit with ZA
 
--- -- setup commentary function
+-- -- setup commentary functionZ
 
 -- navigate through windows
 
