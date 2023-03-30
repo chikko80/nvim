@@ -75,13 +75,13 @@ M.general = {
 
 M.telescope = {
   plugin = true,
-    n = {
-        ["s"] = { "<cmd> Telescope live_grep <CR>", "Fuzzy infile" },
-        ["<leader>p"] = { "<cmd> Telescope git_files <CR>", "git files" },
-        -- ["<leader>o"] = { "<cmd> Telescope find_files <CR>", "find files " },
-        ["<leader>o"] = { "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "find all" },
-        ["<leader>u"] = { "<cmd> Telescope buffers <CR>", "find buffers" },
-    }
+  n = {
+    ["s"] = { "<cmd> Telescope live_grep <CR>", "Fuzzy infile" },
+    ["<leader>p"] = { "<cmd> Telescope git_files <CR>", "git files" },
+    -- ["<leader>o"] = { "<cmd> Telescope find_files <CR>", "find files " },
+    ["<leader>o"] = { "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "find all" },
+    ["<leader>u"] = { "<cmd> Telescope buffers <CR>", "find buffers" },
+  },
 }
 
 M.nvimtree = {
@@ -95,7 +95,6 @@ M.nvimtree = {
     -- ["<leader>e"] = { "<cmd> NvimTreeFocus <CR>", "focus nvimtree" },
   },
 }
-
 
 M.comment = {
   plugin = true,
@@ -130,33 +129,38 @@ M.comment = {
       "toggle comment",
     },
   },
-
 }
-
-
 
 M.misc = {
-    n = {
-        ["<leader>U"] = { "<cmd>UndotreeToggle<CR>", "UndotreeToggle" },
-        ["<leader>g"] = { "<cmd>LazyGit<CR>", "LazyGit" },
+  n = {
+    ["<leader>U"] = { "<cmd>UndotreeToggle<CR>", "UndotreeToggle" },
 
-        ["<leader>bd"]  = { "<CMD>bd<CR>", "Close active buffer" },
-        ["<leader>bc"]  = { "<C-w>o", "Close other buffers" },
-        ["<leader>bh"] = { "<C-w>H", "Move buffer left" },
-        ["<leader>bl"] = { "<C-w>L", "Move buffer right" },
-        ["<leader>bj"] = { "<C-w>J", "Move buffer down" },
-        ["<leader>bk"] = { "<C-w>K", "Move buffer up" },
-    }
+    ["<leader>g"] = { "<cmd>LazyGit<CR>", "LazyGit" },
+    ["<leader>bd"] = { "<CMD>bd<CR>", "Close active buffer" },
+    ["<leader>bc"] = { "<C-w>o", "Close other buffers" },
+    ["<leader>bh"] = { "<C-w>H", "Move buffer left" },
+    ["<leader>bl"] = { "<C-w>L", "Move buffer right" },
+    ["<leader>bj"] = { "<C-w>J", "Move buffer down" },
+    ["<leader>bk"] = { "<C-w>K", "Move buffer up" },
+
+    -- TODO make only on attach
+    ["<leader>f"] = { "<cmd>lua vim.lsp.buf.format()<CR>", "Format file", {} },
+    ["<leader>r"] = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename Code", {} },
+    -- ["<leader>r"] = { "<cmd>Lspsaga rename ++project<CR>", "Rename Project Wide", {} }, -- ! broken
+    ["gr"] = { "<cmd>Telescope lsp_references", "Go References", {} },
+    -- ["gf"] = { "<cmd>Lspsaga lsp_finder<CR>", "", opts }, -- ! broken
+    ["gd"] = { "<Cmd>lua vim.lsp.buf.declaration()<CR>", "Go Definition", {} },
+    ["gD"] = { "<cmd>Lspsaga peek_definition<CR>", "Peek Definition", {} },
+    ["<leader>d"] = { "<cmd>Lspsaga show_line_diagnostics<CR>", "Show Diagnostics", {} },
+    ["<leader>dl"] = { "<cmd>Telescope diagnostics<CR>", "Show Diagnostics List", {} },
+    ["<leader>dn"] = { "<cmd>Lspsaga diagnostic_jump_prev<CR>", "Jump Prev Diagnostic", {} },
+    ["<leader>dp"] = { "<cmd>Lspsaga diagnostic_jump_next<CR>", "Jump Next Diagnostic", {} },
+    ["<leader>ca"] = { "<cmd>Lspsaga code_action<CR>", "Code Action", {} },
+    ["K"] = { "<cmd>Lspsaga hover_doc<CR>", "Hover Doc", {} },
+    ["<leader>co"] = { "<cmd>Lspsaga outline<CR>", "Code Outline", {} },
+  },
 }
 
-
-vim.keymap.set({ 'n', 'x', 'v' }, ';', function()
-    local focusable_windows_on_tabpage = vim.tbl_filter(
-        function(win) return vim.api.nvim_win_get_config(win).focusable end,
-        vim.api.nvim_tabpage_list_wins(0)
-    )
-    require('leap').leap { target_windows = focusable_windows_on_tabpage }
-end)
 
 return M
 

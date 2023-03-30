@@ -6,7 +6,7 @@ vim.opt.relativenumber = true
 
 vim.opt.clipboard=""
 
-vim.opt.timeoutlen = 400
+vim.opt.timeoutlen = 100
 
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
@@ -70,16 +70,15 @@ autocmd("VimResized", {
 })
 
 
--- TODO 
--- vim.api.nvim_create_autocmd({ 'BufEnter' }, {
---   pattern = 'NvimTree*',
---   callback = function()
---   local view = require('nvim-tree.view')
---   local is_visible = view.is_visible()
-
---   local api = require('nvim-tree.api')
---   if not is_visible then
---     api.tree.open()
---   end
---   end,
--- })
+-- Close NvimTree when leaving nvim, otherwise autosesion bugs
+vim.api.nvim_create_autocmd({ 'VimLeave' }, {
+  pattern = 'NvimTree*',
+  callback = function()
+  local view = require('nvim-tree.view')
+  local is_visible = view.is_visible()
+  local api = require('nvim-tree.api')
+  if is_visible then
+    api.tree.close()
+  end
+  end,
+})
