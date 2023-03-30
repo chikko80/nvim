@@ -37,7 +37,6 @@ TODO:
 
     - better error lens
         https://github.com/Civitasv/runvim/blob/master/lua/plugins/lsp/handlers.lua
-        - trouble? 
     - copilot
     - copilot-cmp
     
@@ -45,6 +44,15 @@ TODO:
 
     - horizontal split delimiter
     - remote dev doesn't work
+
+
+    - Potential plugins
+        - trouble.nvim
+        - todo-comments.nvim
+        - zbirenbaum/copilot.lua
+        - zbirenbaum/copilot-cmp
+        - echasnovski/mini.starter
+        - dstein64/vim-startuptime
 
 FIXED
     - stop auto comment on new line

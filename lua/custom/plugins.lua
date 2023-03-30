@@ -53,7 +53,14 @@ local plugins = {
       require "custom.configs.lspconfig"
     end, -- Override to setup mason-lspconfig
   },
-  -- override plugin configs
+
+  -- ? Core plugins
+  {
+    "nvim-telescope/telescope.nvim",
+    dependencies = { "nvim-telescope/telescope-fzy-native.nvim" },
+    opts = overrides.telescope,
+  },
+
   {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
@@ -62,12 +69,11 @@ local plugins = {
     opts = overrides.treesitter,
     lazy = false,
   },
+
   {
     "nvim-tree/nvim-tree.lua",
     opts = overrides.nvimtree,
   },
-
-  -- Install a plugin
 
   {
     "chikko80/error-lens.nvim",
@@ -75,6 +81,25 @@ local plugins = {
     opts = options.error_lens,
   },
 
+  {
+    "RRethy/vim-illuminate",
+    lazy = false,
+    config = function()
+      require("illuminate").configure()
+      vim.cmd "highlight IlluminatedWordText guibg=#3b3f45 "
+      vim.cmd "highlight IlluminatedWordRead guibg=#3b3f45 "
+      vim.cmd "highlight IlluminatedWordWrite guibg=#3b3f45 "
+    end,
+  },
+
+  {
+    "mrjones2014/nvim-ts-rainbow", -- * new plugin
+    lazy = false,
+  },
+
+  { "echasnovski/mini.nvim", version = "*" },
+
+  -- ? Utility plugins
   {
     "rmagatti/auto-session",
     opts = {
@@ -100,20 +125,52 @@ local plugins = {
     lazy = false,
   },
 
-  -- -- doesn't work
   {
-    "RRethy/vim-illuminate",
+    "wakatime/vim-wakatime",
+    lazy = false,
+  },
+
+  {
+    "github/copilot.vim",
     lazy = false,
     config = function()
-      require("illuminate").configure()
-      vim.cmd("highlight IlluminatedWordText guibg=#3b3f45 ")
-      vim.cmd("highlight IlluminatedWordRead guibg=#3b3f45 ")
-      vim.cmd("highlight IlluminatedWordWrite guibg=#3b3f45 ")
+      vim.g.copilot_no_tab_map = true
+      vim.g.copilot_assume_mapped = true
+      vim.api.nvim_set_keymap("i", "<C-l>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
     end,
   },
 
   {
-    -- TODO event on save
+    "ggandor/leap.nvim",
+    lazy = false,
+    config = function()
+      vim.keymap.set({ "n", "x", "v" }, ";", function()
+        local focusable_windows_on_tabpage = vim.tbl_filter(function(win)
+          return vim.api.nvim_win_get_config(win).focusable
+        end, vim.api.nvim_tabpage_list_wins(0))
+        require("leap").leap { target_windows = focusable_windows_on_tabpage }
+      end)
+    end,
+  },
+
+  -- ? UI plugins
+  {
+    "kdheepak/lazygit.nvim",
+    lazy = false,
+  },
+
+  {
+    "mbbill/undotree",
+    config = function()
+      vim.g.undotree_SetFocusWhenToggle = true
+      vim.g.undotree_WindowLayout = 3
+    end,
+    lazy = false,
+  },
+
+  -- TODO replace with todo-comments.nvim
+  -- but currently seems broken
+  {
     "Djancyp/better-comments.nvim",
     lazy = false,
     config = function()
@@ -164,78 +221,6 @@ local plugins = {
         },
       }
     end,
-  },
-
-  {
-    "ggandor/leap.nvim",
-    lazy = false,
-    config = function()
-      vim.keymap.set({ "n", "x", "v" }, ";", function()
-        local focusable_windows_on_tabpage = vim.tbl_filter(function(win)
-          return vim.api.nvim_win_get_config(win).focusable
-        end, vim.api.nvim_tabpage_list_wins(0))
-        require("leap").leap { target_windows = focusable_windows_on_tabpage }
-      end)
-    end,
-  },
-
-  {
-    "kdheepak/lazygit.nvim",
-    lazy = false,
-  },
-
-  {
-    "mbbill/undotree",
-    config = function()
-      vim.g.undotree_SetFocusWhenToggle = true
-      vim.g.undotree_WindowLayout = 3
-    end,
-    lazy = false,
-  },
-
-  {
-    "wakatime/vim-wakatime",
-    lazy = false,
-  },
-
-  {
-    "github/copilot.vim",
-    lazy = false,
-    config = function()
-      vim.g.copilot_no_tab_map = true
-      vim.g.copilot_assume_mapped = true
-      vim.api.nvim_set_keymap("i", "<C-l>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
-    end,
-  },
-  {
-    "mrjones2014/nvim-ts-rainbow", -- * new plugin
-    lazy = false,
-  },
-
-  {
-    "nvim-telescope/telescope.nvim",
-    dependencies = { "nvim-telescope/telescope-fzy-native.nvim" },
-    opts = {
-      pickers = {
-        buffers = {
-          ignore_current_buffer = true,
-          sort_mru = true,
-        },
-        -- find_files = {
-        -- hidden = true
-        -- }
-      },
-      extensions_list = { "themes", "terms", "fzy_native" },
-      extensions = {
-        fzf = {
-          fuzzy = true, -- false will only do exact matching
-          override_generic_sorter = true, -- override the generic sorter
-          override_file_sorter = true, -- override the file sorter
-          -- case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
-          -- the default case_mode is "smart_case"
-        },
-      },
-    },
   },
 
   -- To make a plugin not be loaded
