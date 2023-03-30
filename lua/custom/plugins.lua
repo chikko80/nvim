@@ -38,6 +38,15 @@ local plugins = {
         lazy = false,
     },
 
+
+    {
+        'simrat39/rust-tools.nvim',
+        config = function()
+            print("Calling config for rust-tools.nvim")
+            require "custom.configs.rust_tools"
+        end,
+        lazy = false,
+    },
     --
     -- -- override plugin configs
     -- {
@@ -206,9 +215,9 @@ local plugins = {
                     prompt_title = "[ Walking on the shoulders of TJ ]",
                 },
                 fzf = {
-                    fuzzy = true,         -- false will only do exact matching
+                    fuzzy = true,                   -- false will only do exact matching
                     override_generic_sorter = true, -- override the generic sorter
-                    override_file_sorter = true, -- override the file sorter
+                    override_file_sorter = true,    -- override the file sorter
                     -- case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
                     -- the default case_mode is "smart_case"
                 },
