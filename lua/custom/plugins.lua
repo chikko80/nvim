@@ -75,7 +75,15 @@ local plugins = {
 
   {
     "nvim-telescope/telescope.nvim",
-    dependencies = { "nvim-telescope/telescope-fzy-native.nvim" },
+    -- dependencies = { "nvim-telescope/telescope-fzf-native.nvim" },
+    dependencies = {
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "make",
+        lazy = false,
+      },
+    },
+    lazy = false,
     opts = overrides.telescope,
   },
 
@@ -98,9 +106,24 @@ local plugins = {
     opts = overrides.nvimtree,
   },
 
+  { "echasnovski/mini.ai", version = "*", lazy = false },
+
+  {
+    "echasnovski/mini.bufremove",
+    version = "*",
+    lazy = false,
+  },
+
   {
     "chikko80/error-lens.nvim",
     event = "LspAttach",
+    opts = options.error_lens,
+  },
+
+  {
+    "folke/trouble.nvim",
+    event = "LspAttach",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = options.error_lens,
   },
 
@@ -119,8 +142,6 @@ local plugins = {
     "mrjones2014/nvim-ts-rainbow", -- * new plugin
     lazy = false,
   },
-
-  { "echasnovski/mini.nvim", version = "*", lazy = false },
 
   -- ? Utility plugins
   {

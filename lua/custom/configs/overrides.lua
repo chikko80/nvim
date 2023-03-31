@@ -72,6 +72,11 @@ M.treesitter = {
 
 -- git support in nvimtree
 M.nvimtree = {
+  view = {
+    width = 40,
+    side = "left",
+    auto_resize = true,
+  },
   actions = {
     open_file = {
       resize_window = true,
@@ -103,7 +108,8 @@ M.telescope = {
     -- hidden = true
     -- }
   },
-  extensions_list = { "themes", "terms", "fzy_native" },
+  extensions_list = { "themes", "terms", "fzf" },
+  -- extensions_list = { "themes", "terms", "fzy_native" },
   extensions = {
     fzf = {
       fuzzy = true, -- false will only do exact matching
@@ -153,5 +159,21 @@ M.nvim_cmp = {
     },
   },
 }
+
+-- M.ui = {
+--   statusline = {
+--     separator_style = "default",
+--     overriden_modules = function()
+--       local st_modules = require "nvchad_ui.statusline.default"
+--       -- this is just default table of statusline modules
+--       return {
+--         mode = function()
+--           return st_modules.mode() .. " HELLOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO "
+--           -- or just return "" to hide this module
+--         end,
+--       }
+--     end,
+--   },
+-- }
 
 return M

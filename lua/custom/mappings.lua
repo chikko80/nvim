@@ -1,5 +1,6 @@
 ---@type MappingsTable
 local M = {}
+--local trouble = require("trouble.providers.telescope")
 
 M.general = {
   n = {
@@ -22,8 +23,7 @@ M.general = {
     -- yank from clipboard
     ["<leader>P"] = { '"+p', "Paste from clipboard", { remap = true } },
 
-    -- save leave with ZA
-    ["ZA"] = { ":wqa<CR>", "Save leave", opts = {} },
+    ["ZA"] = { "<cmd>wqa<CR>", "Save leave", opts = {} },
 
     -- (in NVChad core)
     ["<C-h>"] = { "<C-w>h", "", opts = {} },
@@ -139,7 +139,16 @@ M.misc = {
     ["<leader>nu"] = { "<CMD>NvChadUpdate<CR>", "Update" },
 
     ["<leader>g"] = { "<CMD>LazyGit<CR>", "LazyGit" },
-    ["<leader>bd"] = { "<CMD>bd<CR>", "Close active buffer" },
+    ["<leader>bd"] = {
+      function()
+        vim.cmd "wa"
+        require("mini.bufremove").delete(0, false)
+      end,
+      "Remove Buffer",
+    },
+
+
+
     ["<leader>bc"] = { "<C-w>o", "Close other buffers" },
     ["<leader>bh"] = { "<C-w>H", "Move buffer left" },
     ["<leader>bl"] = { "<C-w>L", "Move buffer right" },
@@ -150,12 +159,13 @@ M.misc = {
     ["<leader>f"] = { "<CMD>lua vim.lsp.buf.format()<CR>", "Format file", {} },
     ["<leader>r"] = { "<CMD>lua vim.lsp.buf.rename()<CR>", "Rename Code", {} },
     -- ["<leader>r"] = { "<CMD>Lspsaga rename ++project<CR>", "Rename Project Wide", {} }, -- ! broken
-    ["gr"] = { "<CMD>Telescope lsp_references", "Go References", {} },
+    ["gr"] = { "<CMD>Telescope lsp_references<CR>", "Go References", {} },
     -- ["gf"] = { "<CMD>Lspsaga lsp_finder<CR>", "", opts }, -- ! broken
     ["gd"] = { "<Cmd>lua vim.lsp.buf.declaration()<CR>", "Go Definition", {} },
     ["gD"] = { "<CMD>Lspsaga peek_definition<CR>", "Peek Definition", {} },
     ["<leader>d"] = { "<CMD>Lspsaga show_line_diagnostics<CR>", "Show Diagnostics", {} },
     ["<leader>dl"] = { "<CMD>Telescope diagnostics<CR>", "Show Diagnostics List", {} },
+    ["<leader>dt"] = { "<CMD>TroubleToggle workspace_diagnostics<CR>", "Show Diagnostics List", {} },
     ["<leader>dn"] = { "<CMD>Lspsaga diagnostic_jump_prev<CR>", "Jump Prev Diagnostic", {} },
     ["<leader>dp"] = { "<CMD>Lspsaga diagnostic_jump_next<CR>", "Jump Next Diagnostic", {} },
     ["<leader>ca"] = { "<CMD>Lspsaga code_action<CR>", "Code Action", {} },
