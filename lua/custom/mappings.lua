@@ -46,10 +46,8 @@ M.general = {
     -- change word under cursor
     ["<leader>s"] = { [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "Replace global", opts = {} },
 
-
-
     -- change word under cursor - useless
-    -- ["<leader>x"] = { "<cmd>!chmod +x %<CR>", "", opts = { silent = true } },
+    -- ["<leader>x"] = { "<CMD>!chmod +x %<CR>", "", opts = { silent = true } },
   },
   i = {
     -- pase from clipboard while in insert mode
@@ -78,11 +76,11 @@ M.general = {
 M.telescope = {
   plugin = true,
   n = {
-    ["s"] = { "<cmd> Telescope live_grep <CR>", "Fuzzy infile" },
-    ["<leader>p"] = { "<cmd> Telescope git_files <CR>", "git files" },
-    -- ["<leader>o"] = { "<cmd> Telescope find_files <CR>", "find files " },
-    ["<leader>o"] = { "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "find all" },
-    ["<leader>u"] = { "<cmd> Telescope buffers <CR>", "find buffers" },
+    ["s"] = { "<CMD> Telescope live_grep <CR>", "Fuzzy infile" },
+    ["<leader>p"] = { "<CMD> Telescope git_files <CR>", "git files" },
+    -- ["<leader>o"] = { "<CMD> Telescope find_files <CR>", "find files " },
+    ["<leader>o"] = { "<CMD> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "find all" },
+    ["<leader>u"] = { "<CMD> Telescope buffers <CR>", "find buffers" },
   },
 }
 
@@ -91,10 +89,10 @@ M.nvimtree = {
 
   n = {
     -- toggle
-    ["<leader>e"] = { "<cmd> NvimTreeToggle <CR>", "NvimTreeToggle" },
+    ["<leader>e"] = { "<CMD> NvimTreeToggle <CR>", "NvimTreeToggle" },
 
     -- focus
-    -- ["<leader>e"] = { "<cmd> NvimTreeFocus <CR>", "focus nvimtree" },
+    -- ["<leader>e"] = { "<CMD> NvimTreeFocus <CR>", "focus nvimtree" },
   },
 }
 
@@ -113,21 +111,21 @@ M.comment = {
 
   v = {
     ["<CHAR-0x37>/"] = {
-      "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
+      "<ESC><CMD>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
       "toggle comment",
     },
   },
 
   x = {
     ["<CHAR-0x37>/"] = {
-      "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
+      "<ESC><CMD>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
       "toggle comment",
     },
   },
 
   i = {
     ["<CHAR-0x37>/"] = {
-      "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
+      "<ESC><CMD>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
       "toggle comment",
     },
   },
@@ -135,12 +133,12 @@ M.comment = {
 
 M.misc = {
   n = {
-    ["<leader>U"] = { "<cmd>UndotreeToggle<CR>", "UndotreeToggle" },
+    ["<leader>U"] = { "<CMD>UndotreeToggle<CR>", "UndotreeToggle" },
 
-    ["<leader>w"] = { "<cmd>:wa<CR>", "Save All Buffers" },
-    ["<leader>nu"] = { "<cmd>NvChadUpdate<CR>", "Update" },
+    ["<leader>w"] = { "<CMD>:wa<CR>", "Save All Buffers" },
+    ["<leader>nu"] = { "<CMD>NvChadUpdate<CR>", "Update" },
 
-    ["<leader>g"] = { "<cmd>LazyGit<CR>", "LazyGit" },
+    ["<leader>g"] = { "<CMD>LazyGit<CR>", "LazyGit" },
     ["<leader>bd"] = { "<CMD>bd<CR>", "Close active buffer" },
     ["<leader>bc"] = { "<C-w>o", "Close other buffers" },
     ["<leader>bh"] = { "<C-w>H", "Move buffer left" },
@@ -148,25 +146,29 @@ M.misc = {
     ["<leader>bj"] = { "<C-w>J", "Move buffer down" },
     ["<leader>bk"] = { "<C-w>K", "Move buffer up" },
 
-    -- TODO make only on attach
-    ["<leader>f"] = { "<cmd>lua vim.lsp.buf.format()<CR>", "Format file", {} },
-    ["<leader>r"] = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename Code", {} },
-    -- ["<leader>r"] = { "<cmd>Lspsaga rename ++project<CR>", "Rename Project Wide", {} }, -- ! broken
-    ["gr"] = { "<cmd>Telescope lsp_references", "Go References", {} },
-    -- ["gf"] = { "<cmd>Lspsaga lsp_finder<CR>", "", opts }, -- ! broken
+    -- TODO: make only on attach
+    ["<leader>f"] = { "<CMD>lua vim.lsp.buf.format()<CR>", "Format file", {} },
+    ["<leader>r"] = { "<CMD>lua vim.lsp.buf.rename()<CR>", "Rename Code", {} },
+    -- ["<leader>r"] = { "<CMD>Lspsaga rename ++project<CR>", "Rename Project Wide", {} }, -- ! broken
+    ["gr"] = { "<CMD>Telescope lsp_references", "Go References", {} },
+    -- ["gf"] = { "<CMD>Lspsaga lsp_finder<CR>", "", opts }, -- ! broken
     ["gd"] = { "<Cmd>lua vim.lsp.buf.declaration()<CR>", "Go Definition", {} },
-    ["gD"] = { "<cmd>Lspsaga peek_definition<CR>", "Peek Definition", {} },
-    ["<leader>d"] = { "<cmd>Lspsaga show_line_diagnostics<CR>", "Show Diagnostics", {} },
-    ["<leader>dl"] = { "<cmd>Telescope diagnostics<CR>", "Show Diagnostics List", {} },
-    ["<leader>dn"] = { "<cmd>Lspsaga diagnostic_jump_prev<CR>", "Jump Prev Diagnostic", {} },
-    ["<leader>dp"] = { "<cmd>Lspsaga diagnostic_jump_next<CR>", "Jump Next Diagnostic", {} },
-    ["<leader>ca"] = { "<cmd>Lspsaga code_action<CR>", "Code Action", {} },
-    ["K"] = { "<cmd>Lspsaga hover_doc<CR>", "Hover Doc", {} },
-    ["<leader>co"] = { "<cmd>Lspsaga outline<CR>", "Code Outline", {} },
+    ["gD"] = { "<CMD>Lspsaga peek_definition<CR>", "Peek Definition", {} },
+    ["<leader>d"] = { "<CMD>Lspsaga show_line_diagnostics<CR>", "Show Diagnostics", {} },
+    ["<leader>dl"] = { "<CMD>Telescope diagnostics<CR>", "Show Diagnostics List", {} },
+    ["<leader>dn"] = { "<CMD>Lspsaga diagnostic_jump_prev<CR>", "Jump Prev Diagnostic", {} },
+    ["<leader>dp"] = { "<CMD>Lspsaga diagnostic_jump_next<CR>", "Jump Next Diagnostic", {} },
+    ["<leader>ca"] = { "<CMD>Lspsaga code_action<CR>", "Code Action", {} },
+    ["K"] = { "<CMD>Lspsaga hover_doc<CR>", "Hover Doc", {} },
+    ["<leader>co"] = { "<CMD>Lspsaga outline<CR>", "Code Outline", {} },
 
     ["<leader>tt"] = {
+      "<CMD>TodoTelescope<CR>",
+      "Telescope Todo Comments",
+    },
+    ["<leader>tz"] = {
       function()
-                -- use this for tests
+        -- use this for tests
       end,
       "testfunction",
     },

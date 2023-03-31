@@ -3,7 +3,7 @@ require("rust-tools").setup {
     on_attach = function(_, _)
       -- print "Attaching Rust Tools"
       -- lsp_setup.setup_on_attach(client)
-        --  TODO keymaps
+        --  TODO: keymaps
     end,
     settings = {
       -- to enable rust-analyzer settings visit:

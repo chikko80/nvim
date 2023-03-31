@@ -48,11 +48,8 @@ TODO:
 
     - Potential plugins
         - trouble.nvim
-        - todo-comments.nvim
-        - zbirenbaum/copilot.lua
-        - zbirenbaum/copilot-cmp
+        - zbirenbaum/copilot-cmp -> Comparators
         - echasnovski/mini.starter
-        - dstein64/vim-startuptime
 
 FIXED
     - stop auto comment on new line

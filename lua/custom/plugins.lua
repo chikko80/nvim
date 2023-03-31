@@ -55,10 +55,33 @@ local plugins = {
   },
 
   -- ? Core plugins
+
+  -- NOTE: keep copilot before core plugin overridden otherwise cmp can't source it
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    -- event = "InsertEnter",
+    opts = options.copilot,
+    lazy = false,
+  },
+
+  {
+    "zbirenbaum/copilot-cmp",
+    config = function()
+      require("copilot_cmp").setup()
+    end,
+    lazy = false,
+  },
+
   {
     "nvim-telescope/telescope.nvim",
     dependencies = { "nvim-telescope/telescope-fzy-native.nvim" },
     opts = overrides.telescope,
+  },
+
+  {
+    "hrsh7th/nvim-cmp",
+    opts = overrides.nvim_cmp,
   },
 
   {
@@ -97,7 +120,7 @@ local plugins = {
     lazy = false,
   },
 
-  { "echasnovski/mini.nvim", version = "*" },
+  { "echasnovski/mini.nvim", version = "*", lazy = false },
 
   -- ? Utility plugins
   {
@@ -131,13 +154,19 @@ local plugins = {
   },
 
   {
-    "github/copilot.vim",
+    "dstein64/vim-startuptime",
     lazy = false,
-    config = function()
-      vim.g.copilot_no_tab_map = true
-      vim.g.copilot_assume_mapped = true
-      vim.api.nvim_set_keymap("i", "<C-l>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
-    end,
+  },
+
+  {
+
+    "folke/noice.nvim",
+    opts = options.notice,
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    },
+    lazy = false,
   },
 
   {
@@ -168,66 +197,13 @@ local plugins = {
     lazy = false,
   },
 
-  -- TODO replace with todo-comments.nvim
-  -- but currently seems broken
   {
-    "Djancyp/better-comments.nvim",
+    "folke/todo-comments.nvim",
     lazy = false,
     config = function()
-      require("better-comment").Setup {
-        tags = {
-          {
-            name = "!",
-            fg = "#FF2D00",
-            bg = "",
-            bold = true,
-            virtual_text = "",
-          },
-          {
-            name = "?",
-            fg = "#3498DB",
-            bg = "",
-            bold = true,
-            virtual_text = "",
-          },
-          {
-            name = "//",
-            fg = "#474747",
-            bg = "",
-            bold = true,
-            virtual_text = "",
-          },
-          {
-            name = "todo",
-            fg = "#FF8C00",
-            bg = "",
-            bold = true,
-            virtual_text = "",
-          },
-          {
-            name = "TODO",
-            fg = "#FF8C00",
-            bg = "",
-            bold = true,
-            virtual_text = "",
-          },
-          {
-            name = "*",
-            fg = "#98C379",
-            bg = "",
-            bold = true,
-            virtual_text = "",
-          },
-        },
-      }
+      require("todo-comments").setup()
     end,
   },
-
-  -- To make a plugin not be loaded
-  -- {
-  --   "NvChad/nvim-colorizer.lua",
-  --   enabled = false
-  -- },
 }
 
 return plugins

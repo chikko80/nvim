@@ -115,4 +115,43 @@ M.telescope = {
   },
 }
 
+-- local test = require("copilot_cmp")
+
+M.nvim_cmp = {
+  mapping = {
+    ["<Up>"] = require("cmp").mapping.select_prev_item(),
+    ["<Down>"] = require("cmp").mapping.select_next_item(),
+    ["<Tab>"] = require("cmp").mapping.confirm {
+      behavior = require("cmp").ConfirmBehavior.Replace,
+      select = false,
+    },
+  },
+  sources = {
+    { name = "copilot" },
+    { name = "nvim_lsp" },
+    { name = "luasnip" },
+    { name = "buffer" },
+    { name = "nvim_lua" },
+    { name = "path" },
+  },
+  -- override for sorting
+  sorting = {
+    priority_weight = 2,
+    comparators = {
+      -- require("copilot-cmp.comparators").prioritize,
+      -- Below is the default comparitor list and order for nvim-cmp
+      require("cmp").config.compare.offset,
+      -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
+      require("cmp").config.compare.exact,
+      require("cmp").config.compare.score,
+      require("cmp").config.compare.recently_used,
+      require("cmp").config.compare.locality,
+      require("cmp").config.compare.kind,
+      require("cmp").config.compare.sort_text,
+      require("cmp").config.compare.length,
+      require("cmp").config.compare.order,
+    },
+  },
+}
+
 return M

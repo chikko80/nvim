@@ -22,17 +22,16 @@ M.mason_nullls = {
 
   automatic_setup = true,
 }
-  -- {
-  --   "RRethy/vim-illuminate",
-  --   lazy = false,
-  --   config = function()
-  --     require("illuminate").configure()
-  --     vim.cmd "highlight IlluminatedWordText guibg=#3b3f45 "
-  --     vim.cmd "highlight IlluminatedWordRead guibg=#3b3f45 "
-  --     vim.cmd "highlight IlluminatedWordWrite guibg=#3b3f45 "
-  --   end,
-  -- },
-
+-- {
+--   "RRethy/vim-illuminate",
+--   lazy = false,
+--   config = function()
+--     require("illuminate").configure()
+--     vim.cmd "highlight IlluminatedWordText guibg=#3b3f45 "
+--     vim.cmd "highlight IlluminatedWordRead guibg=#3b3f45 "
+--     vim.cmd "highlight IlluminatedWordWrite guibg=#3b3f45 "
+--   end,
+-- },
 
 M.error_lens = {
   colors = {
@@ -91,6 +90,39 @@ M.better_comments = {
       bold = true,
       virtual_text = "",
     },
+  },
+}
+
+M.copilot = {
+
+  panel = {
+    enabled = false,
+    auto_refresh = false,
+  },
+
+  suggestion = {
+    enabled = false,
+    auto_trigger = true,
+    keymap = {
+      accept = "<C-l>",
+    },
+  },
+  copilot_node_command = "node", -- Node.js version must be > 16.x
+  server_opts_overrides = {},
+}
+
+M.notice = {
+  lsp = {
+    override = {
+      ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+      ["vim.lsp.util.stylize_markdown"] = true,
+      ["cmp.entry.get_documentation"] = true,
+    },
+  },
+  presets = {
+    bottom_search = false,
+    command_palette = true,
+    long_message_to_split = true,
   },
 }
 
