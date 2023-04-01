@@ -9,6 +9,9 @@ TODO:
     - cmp sorting
     - nvchad statusline show file path
     - telescope search vim disable (double esc)
+    - not possble to move a editor to the next pane
+    - instead the order of the panes moves
+    - save on window change or anything else, buf change is not enough
 
     - debugging
         - [https://rsdlt.github.io/posts/rust-nvim-ide-guide-walkthrough-development-debug/](https://rsdlt.github.io/posts/rust-nvim-ide-guide-walkthrough-development-debug/)
@@ -20,6 +23,7 @@ TODO:
         - trouble.nvim
         - zbirenbaum/copilot-cmp -> Comparators
         - echasnovski/mini.starter
+        - subtitute
 
     - file name refactoring
         - [https://www.reddit.com/r/neovim/comments/psx9rc/how_to_make_vim_smart_like_jetbrains_ide/](https://www.reddit.com/r/neovim/comments/psx9rc/how_to_make_vim_smart_like_jetbrains_ide/)

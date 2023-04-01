@@ -87,6 +87,7 @@ M.nvimtree = {
   },
   git = {
     enable = true,
+    ignore = false,
   },
   renderer = {
     highlight_git = true,
@@ -95,6 +96,16 @@ M.nvimtree = {
         git = true,
       },
     },
+  },
+
+  diagnostics = {
+    enable = true,
+    show_on_dirs = true,
+    show_on_open_dirs = true,
+    -- severity = {
+    --   min = vim.diagnostic.severity.HINT,
+    --   max = vim.diagnostic.severity.ERROR,
+    -- },
   },
 }
 
@@ -158,6 +169,11 @@ M.nvim_cmp = {
       require("cmp").config.compare.order,
     },
   },
+}
+
+M.blankline = {
+  show_current_context = false,
+  show_current_context_start = false,
 }
 
 -- M.ui = {

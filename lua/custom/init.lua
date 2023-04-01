@@ -1,5 +1,7 @@
 local autocmd = vim.api.nvim_create_autocmd
 
+vim.diagnostic.config { virtual_text = false }
+
 vim.opt.nu = true
 
 vim.opt.relativenumber = true
@@ -70,14 +72,41 @@ autocmd("VimResized", {
 })
 
 -- Close NvimTree when leaving nvim, otherwise autosesion bugs
-vim.api.nvim_create_autocmd({ "VimLeave" }, {
-  pattern = "NvimTree*",
+-- https://github.com/nvim-tree/nvim-tree.lua/issues/1992
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'NvimTree' },
+  callback = function(args)
+    vim.api.nvim_create_autocmd('VimLeavePre', {
+      callback = function()
+        vim.api.nvim_buf_delete(args.buf, { force = true })
+        return true
+      end
+    })
+  end,
+})
+
+vim.api.nvim_create_autocmd({ 'BufEnter' }, {
+  pattern = 'NvimTree*',
   callback = function()
-    local view = require "nvim-tree.view"
+    local view = require('nvim-tree.view')
     local is_visible = view.is_visible()
-    local api = require "nvim-tree.api"
-    if is_visible then
-      api.tree.close()
+
+    local api = require('nvim-tree.api')
+    if not is_visible then
+      api.tree.open()
     end
   end,
 })
+
+
+
+
+
+
+
+
+
+
+
+
+

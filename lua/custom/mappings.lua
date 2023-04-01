@@ -147,8 +147,6 @@ M.misc = {
       "Remove Buffer",
     },
 
-
-
     ["<leader>bc"] = { "<C-w>o", "Close other buffers" },
     ["<leader>bh"] = { "<C-w>H", "Move buffer left" },
     ["<leader>bl"] = { "<C-w>L", "Move buffer right" },
@@ -177,9 +175,7 @@ M.misc = {
       "Telescope Todo Comments",
     },
     ["<leader>tz"] = {
-      function()
-        -- use this for tests
-      end,
+      function() end,
       "testfunction",
     },
   },

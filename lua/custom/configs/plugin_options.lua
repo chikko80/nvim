@@ -34,6 +34,7 @@ M.mason_nullls = {
 -- },
 
 M.error_lens = {
+  enabled = true,
   colors = {
     error_fg = "#FF6363", -- diagnostic font color
     error_bg = "#4B252C", -- diagnostic line color

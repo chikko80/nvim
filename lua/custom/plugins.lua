@@ -97,7 +97,7 @@ local plugins = {
     dependencies = {
       "windwp/nvim-ts-autotag", -- todo doesn't work
     },
-    opts = overrides.treesitter,
+
     lazy = false,
   },
 
@@ -120,22 +120,18 @@ local plugins = {
     opts = options.error_lens,
   },
 
+  -- {
+  --   dir = "/Users/chikko/vsCodeProjects/error-lens.nvim",
+  --   event = "LspAttach",
+  --   opts = options.error_lens,
+  -- },
+
   {
     "folke/trouble.nvim",
     event = "LspAttach",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = options.error_lens,
-  },
-
-  {
-    "RRethy/vim-illuminate",
-    lazy = false,
-    config = function()
-      require("illuminate").configure()
-      vim.cmd "highlight IlluminatedWordText guibg=#3b3f45 "
-      vim.cmd "highlight IlluminatedWordRead guibg=#3b3f45 "
-      vim.cmd "highlight IlluminatedWordWrite guibg=#3b3f45 "
-    end,
+    enabled = false,
   },
 
   {
@@ -155,13 +151,19 @@ local plugins = {
   },
 
   {
-    "tpope/vim-repeat",
+    "tpope/vim-surround",
     lazy = false,
   },
 
   {
-    "tpope/vim-surround",
+    "RRethy/vim-illuminate",
     lazy = false,
+    config = function()
+      require("illuminate").configure()
+      vim.cmd "highlight IlluminatedWordText guibg=#3b3f45 "
+      vim.cmd "highlight IlluminatedWordRead guibg=#3b3f45 "
+      vim.cmd "highlight IlluminatedWordWrite guibg=#3b3f45 "
+    end,
   },
 
   {
@@ -190,10 +192,14 @@ local plugins = {
     lazy = false,
   },
 
+  {},
+
   {
     "ggandor/leap.nvim",
     lazy = false,
     config = function()
+      -- grey out search area
+      vim.api.nvim_set_hl(0, "LeapBackdrop", { link = "Comment" })
       vim.keymap.set({ "n", "x", "v" }, ";", function()
         local focusable_windows_on_tabpage = vim.tbl_filter(function(win)
           return vim.api.nvim_win_get_config(win).focusable
@@ -201,6 +207,19 @@ local plugins = {
         require("leap").leap { target_windows = focusable_windows_on_tabpage }
       end)
     end,
+    dependencies = {
+      {
+        "ggandor/flit.nvim",
+        lazy = false,
+        config = function()
+          require("flit").setup {}
+        end,
+      },
+      {
+        "tpope/vim-repeat",
+        lazy = false,
+      },
+    },
   },
 
   -- ? UI plugins
