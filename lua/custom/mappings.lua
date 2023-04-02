@@ -5,6 +5,12 @@ local M = {}
 M.general = {
   n = {
     -- do nothing
+    -- ["w"] = { "", "", opts = { remap = true } },
+    -- ["b"] = { "", "", opts = { remap = true } },
+    -- ["j"] = { "", "", opts = { remap = true } },
+    -- ["k"] = { "", "", opts = { remap = true } },
+    -- ["l"] = { "", "", opts = { remap = true } },
+    -- ["h"] = { "", "", opts = { remap = true } },
     ["<CHAR-0x37>p"] = { "", "", opts = { remap = true } },
     ["<CHAR-0x37>o"] = { "", "", opts = { remap = true } },
     ["<CHAR-0x37>s"] = { "", "", opts = { remap = true } },
@@ -174,8 +180,11 @@ M.misc = {
       "<CMD>TodoTelescope<CR>",
       "Telescope Todo Comments",
     },
+    -- theme switcher
+    ["<leader>th"] = { "<cmd> Telescope themes <CR>", "nvchad themes" },
     ["<leader>tz"] = {
-      function() end,
+      function() 
+            end,
       "testfunction",
     },
   },

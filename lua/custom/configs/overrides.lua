@@ -73,9 +73,8 @@ M.treesitter = {
 -- git support in nvimtree
 M.nvimtree = {
   view = {
-    width = 40,
+    width = 30,
     side = "left",
-    auto_resize = true,
   },
   actions = {
     open_file = {
@@ -171,11 +170,13 @@ M.nvim_cmp = {
   },
 }
 
+-- TODO:
 M.blankline = {
   show_current_context = false,
   show_current_context_start = false,
 }
 
+-- TODO:
 -- M.ui = {
 --   statusline = {
 --     separator_style = "default",

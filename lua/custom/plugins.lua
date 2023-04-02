@@ -4,6 +4,10 @@ local options = require "custom.configs.plugin_options"
 ---@type NvPluginSpec[]
 local plugins = {
   -- Override plugin definition options
+  {
+    "ThePrimeagen/vim-be-good",
+    lazy = false,
+  },
 
   {
     "neovim/nvim-lspconfig",
