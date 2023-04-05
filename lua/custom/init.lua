@@ -42,13 +42,6 @@ vim.opt.termguicolors = true
 
 vim.o.switchbuf = vim.o.switchbuf .. ",uselast"
 
--- save file on buf change or leave
-vim.cmd [[
-    augroup AutoSaveBuffers
-      autocmd!
-      autocmd WinLeave,BufLeave * if &modified | silent! write | silent! doautocmd BufWrite | endif
-    augroup END
-]]
 
 -- highlight yanked text for 200ms using the "Visual" highlight group
 vim.cmd [[

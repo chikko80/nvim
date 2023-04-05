@@ -3,12 +3,24 @@ local options = require "custom.configs.plugin_options"
 
 ---@type NvPluginSpec[]
 local plugins = {
-  -- Override plugin definition options
+
+  -- NOTE: keep copilot before core plugin overridden otherwise cmp can't source it
   {
-    "ThePrimeagen/vim-be-good",
-    lazy = false,
+    -- event = "InsertEnter",
+    "zbirenbaum/copilot-cmp",
+    event = "InsertEnter",
+    config = function()
+      require("copilot_cmp").setup()
+    end,
+    dependencies = {
+      {
+        "zbirenbaum/copilot.lua",
+        opts = options.copilot,
+      },
+    },
   },
 
+  -- NOTE: LSP configs
   {
     "neovim/nvim-lspconfig",
     dependencies = {
@@ -44,12 +56,11 @@ local plugins = {
       },
       {
         "simrat39/rust-tools.nvim",
-        event = "LspAttach",
         ft = "rs",
         config = function()
           require "custom.configs.rust_tools"
         end,
-        lazy = false,
+        lazy = false, -- NOTE: errors happening if not lazy
       },
     },
     config = function()
@@ -60,34 +71,15 @@ local plugins = {
 
   -- ? Core plugins
 
-  -- NOTE: keep copilot before core plugin overridden otherwise cmp can't source it
-  {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    -- event = "InsertEnter",
-    opts = options.copilot,
-    lazy = false,
-  },
-
-  {
-    "zbirenbaum/copilot-cmp",
-    config = function()
-      require("copilot_cmp").setup()
-    end,
-    lazy = false,
-  },
-
   {
     "nvim-telescope/telescope.nvim",
-    -- dependencies = { "nvim-telescope/telescope-fzf-native.nvim" },
     dependencies = {
       {
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "make",
-        lazy = false,
+        cmd = "Telescope",
       },
     },
-    lazy = false,
     opts = overrides.telescope,
   },
 
@@ -99,10 +91,15 @@ local plugins = {
   {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
-      "windwp/nvim-ts-autotag", -- todo doesn't work
-    },
+      {
 
-    lazy = false,
+        "windwp/nvim-ts-autotag", -- todo doesn't work
+      },
+      {
+        "mrjones2014/nvim-ts-rainbow", -- * new plugin
+      },
+    },
+    opts = overrides.treesitter,
   },
 
   {
@@ -110,23 +107,24 @@ local plugins = {
     opts = overrides.nvimtree,
   },
 
-  { "echasnovski/mini.ai", version = "*", lazy = false },
+  { "echasnovski/mini.ai", version = "*", cmd = "InsertEnter" },
 
   {
     "echasnovski/mini.bufremove",
+    event = "BufRead",
     version = "*",
-    lazy = false,
   },
 
   {
     "chikko80/error-lens.nvim",
-    event = "LspAttach",
+    event = "BufRead",
     opts = options.error_lens,
   },
 
   -- {
   --   dir = "/Users/chikko/vsCodeProjects/error-lens.nvim",
-  --   event = "LspAttach",
+  --   branch = "telescope_extension",
+  --   event = "BufRead",
   --   opts = options.error_lens,
   -- },
 
@@ -134,34 +132,28 @@ local plugins = {
     "folke/trouble.nvim",
     event = "LspAttach",
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = options.error_lens,
-    enabled = false,
-  },
-
-  {
-    "mrjones2014/nvim-ts-rainbow", -- * new plugin
-    lazy = false,
+    enabled = true,
   },
 
   -- ? Utility plugins
   {
     "rmagatti/auto-session",
+    event = "VimEnter",
     opts = {
       log_level = "error",
       auto_restore_enabled = true,
       auto_save_enabled = true,
     },
-    lazy = false,
   },
 
   {
     "tpope/vim-surround",
-    lazy = false,
+    event = "InsertEnter",
   },
 
   {
     "RRethy/vim-illuminate",
-    lazy = false,
+    event = "BufRead",
     config = function()
       require("illuminate").configure()
       vim.cmd "highlight IlluminatedWordText guibg=#3b3f45 "
@@ -171,36 +163,28 @@ local plugins = {
   },
 
   {
-    "kenn7/vim-arsync",
-    lazy = false,
-  },
-
-  {
     "wakatime/vim-wakatime",
-    lazy = false,
+    event = "VimEnter",
   },
 
   {
     "dstein64/vim-startuptime",
-    lazy = false,
+    cmd = "StartupTime",
   },
 
   {
-
     "folke/noice.nvim",
+    event = "VimEnter",
     opts = options.notice,
     dependencies = {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",
     },
-    lazy = false,
   },
-
-  {},
 
   {
     "ggandor/leap.nvim",
-    lazy = false,
+    event = "InsertEnter",
     config = function()
       -- grey out search area
       vim.api.nvim_set_hl(0, "LeapBackdrop", { link = "Comment" })
@@ -214,14 +198,12 @@ local plugins = {
     dependencies = {
       {
         "ggandor/flit.nvim",
-        lazy = false,
         config = function()
           require("flit").setup {}
         end,
       },
       {
         "tpope/vim-repeat",
-        lazy = false,
       },
     },
   },
@@ -229,7 +211,7 @@ local plugins = {
   -- ? UI plugins
   {
     "kdheepak/lazygit.nvim",
-    lazy = false,
+    cmd = "LazyGit",
   },
 
   {
@@ -238,7 +220,7 @@ local plugins = {
       vim.g.undotree_SetFocusWhenToggle = true
       vim.g.undotree_WindowLayout = 3
     end,
-    lazy = false,
+    cmd = "UndotreeToggle",
   },
 
   {
@@ -247,6 +229,38 @@ local plugins = {
     config = function()
       require("todo-comments").setup()
     end,
+  },
+
+  {
+    "nvim-pack/nvim-spectre",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+  },
+
+  {
+    "ThePrimeagen/vim-be-good",
+    cmd = "VimBeGood",
+  },
+
+  {
+    "Pocco81/auto-save.nvim",
+    config = function()
+      require("auto-save").setup {
+        enabled = true,
+        execution_message = {
+          message = function() -- message to print on save
+            return "" -- no message
+          end,
+        },
+        events = { "InsertLeave", "TextChanged" },
+        write_all_buffers = true,
+        on_off_commands = true,
+        clean_command_line_interval = 0,
+        debounce_delay = 500,
+      }
+    end,
+    lazy = false,
   },
 }
 

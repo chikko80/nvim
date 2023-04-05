@@ -13,10 +13,10 @@ M.general = {
     -- ["h"] = { "", "", opts = { remap = true } },
     ["<CHAR-0x37>p"] = { "", "", opts = { remap = true } },
     ["<CHAR-0x37>o"] = { "", "", opts = { remap = true } },
-    ["<CHAR-0x37>s"] = { "", "", opts = { remap = true } },
 
     -- newline on enter
     ["<CR>"] = { "o<Esc>", "", opts = {} },
+    ["<C-b>"] = { "<C-^>", "Go file back", opts = { remap = true } },
 
     -- ["<CHAR-0x37>r"] = { ":luafile ~/.config/nvim/init.lua<CR>", "", opts = {} }, not need in NVChad
     -- ["<CHAR-0x36>s"] = { ":wa <CR>", opts = { remap = true } },
@@ -50,7 +50,8 @@ M.general = {
     ["n"] = { "nzzzv", "", opts = {} },
 
     -- change word under cursor
-    ["<leader>s"] = { [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "Replace global", opts = {} },
+    ["<leader>s"] = { [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "Replace in file" },
+    ["<leader>S"] = { '<cmd>lua require("spectre").open()<CR>', "Replace global wide" },
 
     -- change word under cursor - useless
     -- ["<leader>x"] = { "<CMD>!chmod +x %<CR>", "", opts = { silent = true } },
@@ -164,11 +165,11 @@ M.misc = {
     ["<leader>r"] = { "<CMD>lua vim.lsp.buf.rename()<CR>", "Rename Code", {} },
     -- ["<leader>r"] = { "<CMD>Lspsaga rename ++project<CR>", "Rename Project Wide", {} }, -- ! broken
     ["gr"] = { "<CMD>Telescope lsp_references<CR>", "Go References", {} },
-    -- ["gf"] = { "<CMD>Lspsaga lsp_finder<CR>", "", opts }, -- ! broken
+    ["gf"] = { "<CMD>Lspsaga lsp_finder<CR>", "" },
     ["gd"] = { "<Cmd>lua vim.lsp.buf.declaration()<CR>", "Go Definition", {} },
     ["gD"] = { "<CMD>Lspsaga peek_definition<CR>", "Peek Definition", {} },
     ["<leader>d"] = { "<CMD>Lspsaga show_line_diagnostics<CR>", "Show Diagnostics", {} },
-    ["<leader>dl"] = { "<CMD>Telescope diagnostics<CR>", "Show Diagnostics List", {} },
+    ["<leader>dl"] = { "<CMD>ErrorLensTelescope<CR>", "Show Diagnostics List", {} },
     ["<leader>dt"] = { "<CMD>TroubleToggle workspace_diagnostics<CR>", "Show Diagnostics List", {} },
     ["<leader>dn"] = { "<CMD>Lspsaga diagnostic_jump_prev<CR>", "Jump Prev Diagnostic", {} },
     ["<leader>dp"] = { "<CMD>Lspsaga diagnostic_jump_next<CR>", "Jump Next Diagnostic", {} },
@@ -183,8 +184,9 @@ M.misc = {
     -- theme switcher
     ["<leader>th"] = { "<cmd> Telescope themes <CR>", "nvchad themes" },
     ["<leader>tz"] = {
-      function() 
-            end,
+      function(...)
+        -- return require("trouble.providers.telescope").open_with_trouble(...)
+      end,
       "testfunction",
     },
   },

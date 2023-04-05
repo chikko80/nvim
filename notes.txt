@@ -4,14 +4,13 @@ TODO:
         - navigation hjkl
     - minimap 
     - remote dev
-    - coq nvim (probably replaced by lsp)
-    - Lazy Loading
-    - cmp sorting
+    - cmp sorting (sometimes broken)
     - nvchad statusline show file path
     - telescope search vim disable (double esc)
     - not possble to move a editor to the next pane
-    - instead the order of the panes moves
-    - save on window change or anything else, buf change is not enough
+        - instead the order of the panes moves
+    - no txt highlighting
+    - no filename refactoring
 
     - debugging
         - [https://rsdlt.github.io/posts/rust-nvim-ide-guide-walkthrough-development-debug/](https://rsdlt.github.io/posts/rust-nvim-ide-guide-walkthrough-development-debug/)
@@ -31,6 +30,9 @@ TODO:
     - Code own plugin? 
         - txt file coloring
         - move split a single window
+
+    - coq nvim (probably replaced by lsp)
+    - Lazy Loading
 
 FIXED
     - stop auto comment on new line
@@ -63,3 +65,7 @@ FIXED
         https://github.com/Civitasv/runvim/blob/master/lua/plugins/lsp/handlers.lua
     - copilot
     - copilot-cmp
+
+
+    
+

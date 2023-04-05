@@ -28,7 +28,6 @@ M.treesitter = {
     "c",
     "lua",
     "vim",
-    "help",
     "query",
     "markdown",
     "markdown_inline",
@@ -73,7 +72,7 @@ M.treesitter = {
 -- git support in nvimtree
 M.nvimtree = {
   view = {
-    width = 30,
+    width = 40,
     side = "left",
   },
   actions = {
@@ -85,7 +84,7 @@ M.nvimtree = {
     },
   },
   git = {
-    enable = true,
+    enable = false,
     ignore = false,
   },
   renderer = {
@@ -134,6 +133,7 @@ M.telescope = {
 -- local test = require("copilot_cmp")
 
 M.nvim_cmp = {
+      require("cmp").config.compare.locality,
   mapping = {
     ["<Up>"] = require("cmp").mapping.select_prev_item(),
     ["<Down>"] = require("cmp").mapping.select_next_item(),
@@ -143,16 +143,16 @@ M.nvim_cmp = {
     },
   },
   sources = {
-    { name = "copilot" },
     { name = "nvim_lsp" },
-    { name = "luasnip" },
+    { name = "copilot" },
     { name = "buffer" },
     { name = "nvim_lua" },
+    { name = "luasnip" },
     { name = "path" },
   },
   -- override for sorting
   sorting = {
-    priority_weight = 2,
+    priority_weight = 1,
     comparators = {
       -- require("copilot-cmp.comparators").prioritize,
       -- Below is the default comparitor list and order for nvim-cmp

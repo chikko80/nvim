@@ -5,6 +5,7 @@ M.mason_lspconfig = {
     -- mandatory
     "rust_analyzer",
     "lua_ls",
+    "pyright",
     -- web dev stuff
     -- "css-lsp",
     -- "html-lsp",
@@ -16,6 +17,7 @@ M.mason_lspconfig = {
 
 M.mason_nullls = {
   ensure_installed = {
+    "autopep8",
     "stylua",
     "prettierd",
   },
@@ -119,7 +121,14 @@ M.notice = {
       ["vim.lsp.util.stylize_markdown"] = true,
       ["cmp.entry.get_documentation"] = true,
     },
+    -- hover = {
+    --   enabled = false,
+    -- },
+    -- signature = {
+    --   enabled = false,
+    -- },
   },
+
   presets = {
     bottom_search = false,
     command_palette = true,
