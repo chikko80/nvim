@@ -35,6 +35,7 @@ TODO:
     - Lazy Loading
 
 FIXED
+    - weird buffer behavior
     - stop auto comment on new line
     - theme colors like vscode
     - search illumination
@@ -68,4 +69,3 @@ FIXED
 
 
     
-

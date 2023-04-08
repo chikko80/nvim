@@ -133,7 +133,7 @@ M.telescope = {
 -- local test = require("copilot_cmp")
 
 M.nvim_cmp = {
-      require("cmp").config.compare.locality,
+  require("cmp").config.compare.locality,
   mapping = {
     ["<Up>"] = require("cmp").mapping.select_prev_item(),
     ["<Down>"] = require("cmp").mapping.select_next_item(),
@@ -143,8 +143,8 @@ M.nvim_cmp = {
     },
   },
   sources = {
-    { name = "nvim_lsp" },
     { name = "copilot" },
+    { name = "nvim_lsp" },
     { name = "buffer" },
     { name = "nvim_lua" },
     { name = "luasnip" },
@@ -192,5 +192,15 @@ M.blankline = {
 --     end,
 --   },
 -- }
+
+M.ui = {
+  ------------------------------- base46 -------------------------------------
+  -- lazyload it when there are 1+ buffers
+  tabufline = {
+    enabled = true,
+    lazyload = true,
+    overriden_modules = nil,
+  },
+}
 
 return M

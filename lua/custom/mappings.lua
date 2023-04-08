@@ -88,6 +88,7 @@ M.telescope = {
     -- ["<leader>o"] = { "<CMD> Telescope find_files <CR>", "find files " },
     ["<leader>o"] = { "<CMD> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "find all" },
     ["<leader>u"] = { "<CMD> Telescope buffers <CR>", "find buffers" },
+    ["<leader>tc"] = { "<CMD> Telescope command_history <CR>", "Command History" },
   },
 }
 
@@ -146,17 +147,12 @@ M.misc = {
     ["<leader>nu"] = { "<CMD>NvChadUpdate<CR>", "Update" },
 
     ["<leader>g"] = { "<CMD>LazyGit<CR>", "LazyGit" },
-    ["<leader>bd"] = {
-      function()
-        vim.cmd "wa"
-        require("mini.bufremove").delete(0, false)
-      end,
-      "Remove Buffer",
-    },
+
+    ["<leader>bd"] = { "<CMD>BetterWinRemoveFromStack<CR>", "Remove Buffer" },
 
     ["<leader>bc"] = { "<C-w>o", "Close other buffers" },
-    ["<leader>bh"] = { "<C-w>H", "Move buffer left" },
-    ["<leader>bl"] = { "<C-w>L", "Move buffer right" },
+    ["<leader>bh"] = { "<CMD>BetterWinMoveLeft<CR>", "Move buffer left" },
+    ["<leader>bl"] = { "<CMD>BetterWinMoveRight<CR>", "Move buffer right" },
     ["<leader>bj"] = { "<C-w>J", "Move buffer down" },
     ["<leader>bk"] = { "<C-w>K", "Move buffer up" },
 

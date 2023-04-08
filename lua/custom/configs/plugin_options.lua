@@ -19,7 +19,8 @@ M.mason_nullls = {
   ensure_installed = {
     "autopep8",
     "stylua",
-    "prettierd",
+    -- "prettierd",
+    "prettier",
   },
 
   automatic_setup = true,

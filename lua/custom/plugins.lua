@@ -110,15 +110,18 @@ local plugins = {
   { "echasnovski/mini.ai", version = "*", cmd = "InsertEnter" },
 
   {
-    "echasnovski/mini.bufremove",
-    event = "BufRead",
-    version = "*",
-  },
-
-  {
     "chikko80/error-lens.nvim",
     event = "BufRead",
     opts = options.error_lens,
+  },
+
+  {
+    dir = "/Users/chikko/vsCodeProjects/better-window.nvim",
+    config = function()
+      require("better-window").setup()
+    end,
+    event = "VimEnter",
+    enabled = true,
   },
 
   -- {
@@ -144,6 +147,7 @@ local plugins = {
       auto_restore_enabled = true,
       auto_save_enabled = true,
     },
+    enabled = true,
   },
 
   {
