@@ -107,6 +107,13 @@ local plugins = {
     opts = overrides.nvimtree,
   },
 
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    opts = overrides.blankline,
+  },
+
+
+
   { "echasnovski/mini.ai", version = "*", cmd = "InsertEnter" },
 
   {

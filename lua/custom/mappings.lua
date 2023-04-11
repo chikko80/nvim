@@ -64,6 +64,12 @@ M.general = {
 
   v = {
 
+    -- substitute in visual mode
+    ["<leader>s"] = { 'y:%s/\\V<c-r>"/<c-r>"/g<left><left>', "Testerino" },
+
+    -- mark with visual mode and search for it
+    ["//"] = { "y/\\V<C-R>=escape(@\",'/\')<CR><CR>", "Visual find" },
+
     -- copy paste clipboard
     ["<CHAR-0x37>c"] = { '"+y', "", { remap = true } },
     ["<leader>y"] = { '"+y', "", { remap = true } },

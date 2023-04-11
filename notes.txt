@@ -1,9 +1,6 @@
 TODO:
-
-
     - high prio
         - nvim tree mark files with git colors
-        - search and replace in current file with visual selection
 
 
     - nvim tree 
@@ -44,6 +41,7 @@ FIXED
 
     - high prio
         - lsp underline word/function with error
+        - search and replace in current file with visual selection
 
     - weird buffer behavior
     - stop auto comment on new line
