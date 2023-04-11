@@ -1,6 +1,7 @@
 ---@type MappingsTable
 local M = {}
 --local trouble = require("trouble.providers.telescope")
+--
 
 M.general = {
   n = {
@@ -62,6 +63,7 @@ M.general = {
   },
 
   v = {
+
     -- copy paste clipboard
     ["<CHAR-0x37>c"] = { '"+y', "", { remap = true } },
     ["<leader>y"] = { '"+y', "", { remap = true } },

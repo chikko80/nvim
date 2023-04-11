@@ -6,7 +6,7 @@ local M = {}
 
 vim.cmd [[
 hi DiagnosticUnderlineError guisp='Red' gui=undercurl 
-hi DiagnosticUnderlineWarn guisp='Yellow' gui=undercurl 
+hi DiagnosticUnderlineWarn guisp='Orange' gui=undercurl 
 hi DiagnosticUnderlineInfo guisp='Blue' gui=undercurl 
 hi DiagnosticUnderlineHint guisp='Green' gui=undercurl 
 set termguicolors
