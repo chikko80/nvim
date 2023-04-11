@@ -42,6 +42,10 @@ TODO:
     - Lazy Loading
 
 FIXED
+
+    - high prio
+        - lsp underline word/function with error
+
     - weird buffer behavior
     - stop auto comment on new line
     - theme colors like vscode
