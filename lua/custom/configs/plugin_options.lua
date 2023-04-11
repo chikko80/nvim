@@ -6,10 +6,6 @@ M.mason_lspconfig = {
     "rust_analyzer",
     "lua_ls",
     "pyright",
-    -- web dev stuff
-    -- "css-lsp",
-    -- "html-lsp",
-    -- "typescript-language-server",
   },
 
   automatic_installation = true,
@@ -19,8 +15,7 @@ M.mason_nullls = {
   ensure_installed = {
     "autopep8",
     "stylua",
-    -- "prettierd",
-    "prettier",
+    "prettierd",
   },
 
   automatic_setup = true,

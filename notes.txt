@@ -1,5 +1,12 @@
 TODO:
 
+
+    - high prio
+        - nvim tree mark files with git colors
+        - lsp underline word/function with error
+        - search and replace in current file with visual selection
+
+
     - nvim tree 
         - navigation hjkl
     - minimap 

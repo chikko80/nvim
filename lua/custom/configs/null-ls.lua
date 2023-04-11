@@ -9,9 +9,7 @@ local b = null_ls.builtins
 local sources = {
   b.formatting.autopep8,
   -- json
-  -- b.formatting.prettierd,
-  -- json
-  b.formatting.prettier,
+  b.formatting.prettierd,
   -- Lua
   b.formatting.stylua,
 }

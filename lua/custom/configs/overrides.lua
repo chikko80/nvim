@@ -88,12 +88,7 @@ M.nvimtree = {
     ignore = false,
   },
   renderer = {
-    highlight_git = true,
-    icons = {
-      show = {
-        git = true,
-      },
-    },
+    highlight_git = false,
   },
 
   diagnostics = {
@@ -176,31 +171,5 @@ M.blankline = {
   show_current_context_start = false,
 }
 
--- TODO:
--- M.ui = {
---   statusline = {
---     separator_style = "default",
---     overriden_modules = function()
---       local st_modules = require "nvchad_ui.statusline.default"
---       -- this is just default table of statusline modules
---       return {
---         mode = function()
---           return st_modules.mode() .. " HELLOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO "
---           -- or just return "" to hide this module
---         end,
---       }
---     end,
---   },
--- }
-
-M.ui = {
-  ------------------------------- base46 -------------------------------------
-  -- lazyload it when there are 1+ buffers
-  tabufline = {
-    enabled = true,
-    lazyload = true,
-    overriden_modules = nil,
-  },
-}
 
 return M

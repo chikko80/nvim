@@ -87,7 +87,6 @@ M.telescope = {
     ["<leader>p"] = { "<CMD> Telescope git_files <CR>", "git files" },
     -- ["<leader>o"] = { "<CMD> Telescope find_files <CR>", "find files " },
     ["<leader>o"] = { "<CMD> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "find all" },
-    ["<leader>u"] = { "<CMD> Telescope buffers <CR>", "find buffers" },
     ["<leader>tc"] = { "<CMD> Telescope command_history <CR>", "Command History" },
   },
 }
@@ -149,6 +148,7 @@ M.misc = {
     ["<leader>g"] = { "<CMD>LazyGit<CR>", "LazyGit" },
 
     ["<leader>bd"] = { "<CMD>BetterWinRemoveFromStack<CR>", "Remove Buffer" },
+    ["<leader>u"] = { "<CMD>BetterWinSelection<CR>", "find buffers" },
 
     ["<leader>bc"] = { "<C-w>o", "Close other buffers" },
     ["<leader>bh"] = { "<CMD>BetterWinMoveLeft<CR>", "Move buffer left" },
