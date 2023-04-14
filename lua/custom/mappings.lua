@@ -39,8 +39,9 @@ M.general = {
     ["<C-l>"] = { "<C-w>l", "", opts = {} },
 
     -- split panes
-    ["<C-\\>"] = { "<C-w>v", "Split horizontal", opts = {} },
-    ["<C-CR>"] = { "<C-w>s", "Split vertical", opts = {} },
+    ["<leader>\\"] = { "<cmd>BetterWinSplitVertical<CR>", "Split Vertical", opts = {} },
+    ["<leader><CR>"] = { "<cmd>BetterWinSplitHorizontal<CR>", "Split horizontal", opts = {} },
+    ["<leader>bsh"] = { "<C-w>s", "Split vertical", opts = {} },
 
     -- stay in line while J
     ["J"] = { "mzJ`z", "", opts = {} },
@@ -150,19 +151,22 @@ M.misc = {
   n = {
     ["<leader>U"] = { "<CMD>UndotreeToggle<CR>", "UndotreeToggle" },
 
-    ["<leader>w"] = { "<CMD>:wa<CR>", "Save All Buffers" },
+    ["<leader>w"] = { "<CMD>w<CR>", "Save All Buffers" },
     ["<leader>nu"] = { "<CMD>NvChadUpdate<CR>", "Update" },
 
     ["<leader>g"] = { "<CMD>LazyGit<CR>", "LazyGit" },
 
-    ["<leader>bd"] = { "<CMD>BetterWinRemoveFromStack<CR>", "Remove Buffer" },
+
+    -- ["ZZ"] = { "<CMD>BetterWinRemoveGroup<CR>", "Remove Group" },
+    ["<leader>bd"] = { "<CMD>BetterWinRemoveFromGroup<CR>", "Remove Buffer" },
     ["<leader>u"] = { "<CMD>BetterWinSelection<CR>", "find buffers" },
 
-    ["<leader>bc"] = { "<C-w>o", "Close other buffers" },
     ["<leader>bh"] = { "<CMD>BetterWinMoveLeft<CR>", "Move buffer left" },
     ["<leader>bl"] = { "<CMD>BetterWinMoveRight<CR>", "Move buffer right" },
-    ["<leader>bj"] = { "<C-w>J", "Move buffer down" },
-    ["<leader>bk"] = { "<C-w>K", "Move buffer up" },
+    ["<leader>bk"] = { "<CMD>BetterWinMoveUp<CR>", "Move buffer up" },
+    ["<leader>bj"] = { "<CMD>BetterWinMoveDown<CR>", "Move buffer down" },
+
+    ["<leader>bc"] = { "<C-w>o", "Close other buffers" },
 
     -- TODO: make only on attach
     ["<leader>f"] = { "<CMD>lua vim.lsp.buf.format()<CR>", "Format file", {} },

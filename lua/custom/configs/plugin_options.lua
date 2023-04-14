@@ -100,7 +100,7 @@ M.copilot = {
   },
 
   suggestion = {
-    enabled = false,
+    enabled = true,
     auto_trigger = true,
     keymap = {
       accept = "<C-l>",

@@ -5,19 +5,47 @@ local options = require "custom.configs.plugin_options"
 local plugins = {
 
   -- NOTE: keep copilot before core plugin overridden otherwise cmp can't source it
+  -- {
+  --   -- event = "InsertEnter",
+  --   "zbirenbaum/copilot-cmp",
+  --   event = "InsertEnter",
+  --   config = function()
+  --     require("copilot_cmp").setup()
+  --   end,
+  --   dependencies = {
+  --     {
+  --       "zbirenbaum/copilot.lua",
+  --       opts = options.copilot,
+  --     },
+  --   },
+  -- },
+  --
+  --
+  -- {
+  --   "mrjones2014/winbarbar.nvim",
+  --   -- config = function()
+  --   --   require("winbarbar").setup {}
+  --   -- end,
+  --   lazy = false,
+  -- },
+  --
+  -- {
+  --   "akinsho/bufferline.nvim",
+  --   version = "v3.*",
+  --   dependencies = "nvim-tree/nvim-web-devicons",
+  --   lazy = false,
+  --   enabled = false,
+  --   config = function()
+  --     vim.opt.termguicolors = true
+  --     require("bufferline").setup {}
+  --   end,
+  -- },
+
   {
     -- event = "InsertEnter",
-    "zbirenbaum/copilot-cmp",
+    "zbirenbaum/copilot.lua",
     event = "InsertEnter",
-    config = function()
-      require("copilot_cmp").setup()
-    end,
-    dependencies = {
-      {
-        "zbirenbaum/copilot.lua",
-        opts = options.copilot,
-      },
-    },
+    opts = options.copilot,
   },
 
   -- NOTE: LSP configs
@@ -51,7 +79,7 @@ local plugins = {
         dependencies = {
           { "nvim-tree/nvim-web-devicons" },
           --Please make sure you install markdown and markdown_inline parser
-          { "nvim-treesitter/nvim-treesitter" },
+          -- { "nvim-treesitter/nvim-treesitter" },
         },
       },
       {
@@ -103,7 +131,8 @@ local plugins = {
   },
 
   {
-    "nvim-tree/nvim-tree.lua",
+    dir = "/Users/chikko/vsCodeProjects/nvim-tree.lua/",
+    -- "nvim-tree/nvim-tree.lua",
     opts = overrides.nvimtree,
   },
 
@@ -112,11 +141,10 @@ local plugins = {
     opts = overrides.blankline,
   },
 
-
-
   { "echasnovski/mini.ai", version = "*", cmd = "InsertEnter" },
 
   {
+    -- dir = "/Users/chikko/vsCodeProjects/error-lens.nvim",
     "chikko80/error-lens.nvim",
     event = "BufRead",
     opts = options.error_lens,
@@ -154,7 +182,7 @@ local plugins = {
       auto_restore_enabled = true,
       auto_save_enabled = true,
     },
-    enabled = true,
+    enabled = false,
   },
 
   {
@@ -247,6 +275,14 @@ local plugins = {
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
+  },
+
+  {
+    "petertriho/nvim-scrollbar",
+    event = "BufRead",
+    config = function()
+      require("scrollbar").setup()
+    end,
   },
 
   {

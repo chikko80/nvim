@@ -138,7 +138,7 @@ M.nvim_cmp = {
     },
   },
   sources = {
-    { name = "copilot" },
+    -- { name = "copilot" },
     { name = "nvim_lsp" },
     { name = "buffer" },
     { name = "nvim_lua" },
@@ -146,23 +146,23 @@ M.nvim_cmp = {
     { name = "path" },
   },
   -- override for sorting
-  sorting = {
-    priority_weight = 1,
-    comparators = {
-      -- require("copilot-cmp.comparators").prioritize,
-      -- Below is the default comparitor list and order for nvim-cmp
-      require("cmp").config.compare.offset,
-      -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
-      require("cmp").config.compare.exact,
-      require("cmp").config.compare.score,
-      require("cmp").config.compare.recently_used,
-      require("cmp").config.compare.locality,
-      require("cmp").config.compare.kind,
-      require("cmp").config.compare.sort_text,
-      require("cmp").config.compare.length,
-      require("cmp").config.compare.order,
-    },
-  },
+  -- sorting = {
+  --   priority_weight = 1,
+  --   comparators = {
+  --     -- require("copilot-cmp.comparators").prioritize,
+  --     -- Below is the default comparitor list and order for nvim-cmp
+  --     require("cmp").config.compare.offset,
+  --     -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
+  --     require("cmp").config.compare.exact,
+  --     require("cmp").config.compare.score,
+  --     require("cmp").config.compare.recently_used,
+  --     require("cmp").config.compare.locality,
+  --     require("cmp").config.compare.kind,
+  --     require("cmp").config.compare.sort_text,
+  --     require("cmp").config.compare.length,
+  --     require("cmp").config.compare.order,
+  --   },
+  -- },
 }
 
 -- TODO:
