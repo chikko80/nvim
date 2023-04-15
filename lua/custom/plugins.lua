@@ -1,9 +1,7 @@
 local overrides = require "custom.configs.overrides"
 local options = require "custom.configs.plugin_options"
-
 ---@type NvPluginSpec[]
 local plugins = {
-
   -- NOTE: keep copilot before core plugin overridden otherwise cmp can't source it
   -- {
   --   -- event = "InsertEnter",
@@ -74,7 +72,11 @@ local plugins = {
         "glepnir/lspsaga.nvim",
         event = "LspAttach",
         config = function()
-          require("lspsaga").setup {}
+          require("lspsaga").setup {
+            symbol_in_winbar = {
+              enable = false,
+            },
+          }
         end,
         dependencies = {
           { "nvim-tree/nvim-web-devicons" },
@@ -114,6 +116,34 @@ local plugins = {
   {
     "hrsh7th/nvim-cmp",
     opts = overrides.nvim_cmp,
+    dependencies = {
+      {
+        "uga-rosa/cmp-dictionary",
+        config = function()
+          local dict = require "cmp_dictionary"
+
+          dict.setup {
+            -- The following are default values.
+            exact = 2,
+            first_case_insensitive = false,
+            document = false,
+            document_command = "wn %s -over",
+            async = false,
+            sqlite = false,
+            max_items = -1,
+            capacity = 5,
+            debug = false,
+          }
+
+          dict.switcher {
+            spelllang = {
+              en = "~/.config/nvim/dict/top50k",
+            },
+          }
+        end,
+        lazy = false, -- load lazy since file is big this
+      },
+    },
   },
 
   {

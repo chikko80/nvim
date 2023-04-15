@@ -143,6 +143,7 @@ M.nvim_cmp = {
     { name = "buffer" },
     { name = "nvim_lua" },
     { name = "luasnip" },
+    { name = "dictionary" },
     { name = "path" },
   },
   -- override for sorting

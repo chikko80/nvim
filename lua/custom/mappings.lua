@@ -52,7 +52,7 @@ M.general = {
     ["n"] = { "nzzzv", "", opts = {} },
 
     -- change word under cursor
-    ["<leader>s"] = { [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "Replace in file" },
+    ["<leader>s"] = { [[:%s/\<<C-r><C-w>\>//gI<Left><Left><Left>]], "Replace in file" },
     ["<leader>S"] = { '<cmd>lua require("spectre").open()<CR>', "Replace global wide" },
 
     -- change word under cursor - useless
