@@ -41,6 +41,8 @@ M.general = {
     -- split panes
     ["<leader>\\"] = { "<cmd>BetterWinSplitVertical<CR>", "Split Vertical", opts = {} },
     ["<leader><CR>"] = { "<cmd>BetterWinSplitHorizontal<CR>", "Split horizontal", opts = {} },
+    -- ["<leader>\\"] = { "<C-w>v", "Split Vertical", opts = {} },
+    -- ["<leader><CR>"] = { "<C-w>s", "Split horizontal", opts = {} },
     ["<leader>bsh"] = { "<C-w>s", "Split vertical", opts = {} },
 
     -- stay in line while J
@@ -97,6 +99,7 @@ M.telescope = {
     -- ["<leader>o"] = { "<CMD> Telescope find_files <CR>", "find files " },
     ["<leader>o"] = { "<CMD> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "find all" },
     ["<leader>tc"] = { "<CMD> Telescope command_history <CR>", "Command History" },
+    ["<leader>tq"] = { "<CMD> Telescope quickfix <CR>", "Quickfix" },
   },
 }
 

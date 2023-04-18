@@ -3,6 +3,8 @@ local M = {}
 M.mason_lspconfig = {
   ensure_installed = {
     -- mandatory
+    -- "clangd",
+    "texlab",
     "rust_analyzer",
     "lua_ls",
     "pyright",

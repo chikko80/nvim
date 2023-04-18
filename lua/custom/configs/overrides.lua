@@ -128,12 +128,18 @@ M.telescope = {
 -- local test = require("copilot_cmp")
 
 M.nvim_cmp = {
+
   require("cmp").config.compare.locality,
   mapping = {
     ["<Up>"] = require("cmp").mapping.select_prev_item(),
+    ["<S-Tab>"] = require("cmp").mapping.select_prev_item(),
     ["<Down>"] = require("cmp").mapping.select_next_item(),
-    ["<Tab>"] = require("cmp").mapping.confirm {
-      behavior = require("cmp").ConfirmBehavior.Replace,
+    ["<Tab>"] = require("cmp").mapping.select_next_item(),
+    -- ["<Space>"] = require("cmp").mapping.confirm {
+    --   behavior = require("cmp").ConfirmBehavior.Replace,
+    --   select = false,
+    -- },
+    ["<CR>"] = require("cmp").mapping.confirm {
       select = false,
     },
   },
