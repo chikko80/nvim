@@ -35,40 +35,40 @@ M.override = {
   -- ["@type.qualifier"] = { fg = "#B1B8C4" },
   -- ["@punctuation.delimiter"] = { fg = "#B1B8C4" },
 
-  ["@lsp.type.method"] = { fg = "#61AFEF" },
-  ["@lsp.type.decorator"] = { fg = "#61AFEF" },
-  ["@lsp.type.variable"] = { fg = "#B1B8C4" },
-  ["@lsp.type.parameter"] = { fg = "#D19A66" },
-  ["@lsp.type.struct"] = { fg = "#E5C07B" },
-  ["@lsp.type.namespace"] = { fg = "#E5C07B" },
-  ["@lsp.type.property"] = { fg = "#D5B3FF" },
-  ["@lsp.type.enumMember"] = { fg = "#56B6C2" },
-  ["@lsp.type.interface"] = { fg = "#2ACFAB" },
-  ["@lsp.type.macro"] = { fg = "#D19A66" },
+  ["@lsp.type.method"] = { fg = "#61AFEF", link = "" },
+  ["@lsp.type.decorator"] = { fg = "#61AFEF", link = "" },
+  ["@lsp.type.variable"] = { fg = "#B1B8C4", link = "" },
+  ["@lsp.type.parameter"] = { fg = "#D19A66", link = "" },
+  ["@lsp.type.struct"] = { fg = "#E5C07B", link = "" },
+  ["@lsp.type.namespace"] = { fg = "#E5C07B", link = "" },
+  ["@lsp.type.property"] = { fg = "#D5B3FF", link = "" },
+  ["@lsp.type.enumMember"] = { fg = "#56B6C2", link = "" },
+  ["@lsp.type.interface"] = { fg = "#2ACFAB", link = "" },
+  ["@lsp.type.macro"] = { fg = "#D19A66", link = "" },
 }
 
 ---@type HLTable
 M.add = {
   NvimTreeOpenedFolderName = { fg = "green", bold = true },
 
-  ["@lsp.type.operator"] = { fg = "#B1B8C4" },
-  ["@lsp.type.generic"] = { fg = "#B1B8C4" },
+  ["@lsp.type.operator"] = { fg = "#B1B8C4", link = "" },
+  ["@lsp.type.generic"] = { fg = "#B1B8C4" , link = ""},
 
-  ["@lsp.type.character"] = { fg = "#98c379" },
+  ["@lsp.type.character"] = { fg = "#98c379" , link = ""},
 
-  ["@lsp.typemod.method"] = { fg = "#61AFEF" },
+  ["@lsp.typemod.method"] = { fg = "#61AFEF" , link = ""},
 
-  ["@lsp.type.keyword"] = { fg = "#C678DD" },
-  ["@lsp.type.selfKeyword"] = { fg = "#C678DD" },
-  ["@lsp.type.selfTypeKeyword"] = { fg = "#C678DD" },
-  ["@lsp.type.formatSpecifier"] = { fg = "#C678DD" },
+  ["@lsp.type.keyword"] = { fg = "#C678DD" , link = ""},
+  ["@lsp.type.selfKeyword"] = { fg = "#C678DD" , link = ""},
+  ["@lsp.type.selfTypeKeyword"] = { fg = "#C678DD" , link = ""},
+  ["@lsp.type.formatSpecifier"] = { fg = "#C678DD" , link = ""},
 
-  ["@lsp.type.typeAlias"] = { fg = "#E5C07B" },
-  ["@lsp.type.library"] = { fg = "#E5C07B" },
-  ["@lsp.typemod.namespace"] = { fg = "#E5C07B" },
+  ["@lsp.type.typeAlias"] = { fg = "#E5C07B" , link = ""},
+  ["@lsp.type.library"] = { fg = "#E5C07B" , link = ""},
+  ["@lsp.typemod.namespace"] = { fg = "#E5C07B" , link = ""},
 
-  ["@lsp.mod.constant"] = { fg = "#D19A66" },
-  ["@lsp.typemod.variable.constant"] = { fg = "#D19A66" },
+  ["@lsp.mod.constant"] = { fg = "#D19A66" , link = ""},
+  ["@lsp.typemod.variable.constant"] = { fg = "#D19A66" , link = ""},
 }
 
 return M

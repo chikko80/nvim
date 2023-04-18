@@ -4,40 +4,6 @@ local options = require "custom.configs.plugin_options"
 local plugins = {
   -- NOTE: keep copilot before core plugin overridden otherwise cmp can't source it
   -- {
-  --   -- event = "InsertEnter",
-  --   "zbirenbaum/copilot-cmp",
-  --   event = "InsertEnter",
-  --   config = function()
-  --     require("copilot_cmp").setup()
-  --   end,
-  --   dependencies = {
-  --     {
-  --       "zbirenbaum/copilot.lua",
-  --       opts = options.copilot,
-  --     },
-  --   },
-  -- },
-  --
-  --
-  -- {
-  --   "mrjones2014/winbarbar.nvim",
-  --   -- config = function()
-  --   --   require("winbarbar").setup {}
-  --   -- end,
-  --   lazy = false,
-  -- },
-  --
-  -- {
-  --   "akinsho/bufferline.nvim",
-  --   version = "v3.*",
-  --   dependencies = "nvim-tree/nvim-web-devicons",
-  --   lazy = false,
-  --   enabled = false,
-  --   config = function()
-  --     vim.opt.termguicolors = true
-  --     require("bufferline").setup {}
-  --   end,
-  -- },
 
   {
     -- event = "InsertEnter",
@@ -161,8 +127,7 @@ local plugins = {
   },
 
   {
-    dir = "/Users/chikko/vsCodeProjects/nvim-tree.lua/",
-    -- "nvim-tree/nvim-tree.lua",
+    "chikko80/nvim-tree.lua",
     opts = overrides.nvimtree,
   },
 
@@ -181,20 +146,13 @@ local plugins = {
   },
 
   {
-    dir = "/Users/chikko/vsCodeProjects/better-window.nvim",
+    "chikko80/testplug",
     config = function()
       require("better-window").setup()
     end,
     event = "VimEnter",
     enabled = true,
   },
-
-  -- {
-  --   dir = "/Users/chikko/vsCodeProjects/error-lens.nvim",
-  --   branch = "telescope_extension",
-  --   event = "BufRead",
-  --   opts = options.error_lens,
-  -- },
 
   {
     "folke/trouble.nvim",
@@ -353,34 +311,8 @@ local plugins = {
           "-interaction=nonstopmode",
         },
       }
-
-      -- -- This is necessary for VimTeX to load properly. The "indent" is optional.
-      -- -- Note that most plugin managers will do this automatically.
-      -- vim.cmd "filetype plugin indent on"
-      --
-      -- -- This enables Vim's and neovim's syntax-related features. Without this, some
-      -- -- VimTeX features will not work (see ":help vimtex-requirements" for more
-      -- -- info).
-      -- vim.cmd "syntax enable"
-      --
-      -- -- Viewer options: One may configure the viewer either by specifying a built-in
-      -- -- viewer method:
       vim.g.vimtex_view_method = ""
       vim.g.vimtex_quickfix_enabled = 0
-      --
-      -- -- Or with a generic interface:
-      -- vim.g.vimtex_view_general_viewer = "okular"
-      -- vim.g.vimtex_view_general_options = "--unique file:@pdf#src:@line@tex"
-      --
-      -- -- VimTeX uses latexmk as the default compiler backend. If you use it, which is
-      -- -- strongly recommended, you probably don't need to configure anything. If you
-      -- -- want another compiler backend, you can change it as follows. The list of
-      -- -- supported backends and further explanation is provided in the documentation,
-      -- -- see ":help vimtex-compiler".
-      -- vim.g.vimtex_compiler_method = "latexrun"
-
-      -- Most VimTeX mappings rely on localleader and this can be changed with the
-      -- following line. The default is usually fine and is the symbol "\".
       vim.g.maplocalleader = " "
     end,
   },
